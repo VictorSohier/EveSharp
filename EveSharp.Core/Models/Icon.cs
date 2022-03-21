@@ -1,0 +1,4 @@
+namespace EveSharp.Core.Models
+{
+
+}
