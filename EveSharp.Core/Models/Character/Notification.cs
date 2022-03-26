@@ -8,7 +8,7 @@ namespace EveSharp.Core.Models.Character
 		public bool IsRead;
 		public long NotificationId;
 		public int SenderId;
-		public SenderType SenderType;
+		public ContactType SenderType;
 		public string Text;
 		public DateTime Timestamp;
 		public NotificationType Type;
