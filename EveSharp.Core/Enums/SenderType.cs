@@ -1,7 +1,11 @@
 namespace EveSharp.Core.Enums
 {
-	public enum SenderType
+	public enum ContactType
 	{
-		character, corporation, alliance, faction, other
+		character,
+		corporation,
+		alliance,
+		faction,
+		other
 	}
 }
