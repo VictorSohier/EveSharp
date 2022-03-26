@@ -1,3 +1,4 @@
+using EveSharp.Core.Enums;
 using EveSharp.Core.Enums.Assets;
 
 namespace EveSharp.Core.Models.Assets
@@ -7,7 +8,7 @@ namespace EveSharp.Core.Models.Assets
         public bool IsBlueprintCopy;
         public bool IsSingleton;
         public long ItemId;
-        public AssetLocationFlag LocationFlag;
+        public LocationFlag LocationFlag;
         public long LocationId;
         public AssetLocationType LocationType;
         public int Quantity;

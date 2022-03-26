@@ -1,6 +1,6 @@
-namespace EveSharp.Core.Enums.Assets
+namespace EveSharp.Core.Enums
 {
-    public enum AssetLocationFlag
+    public enum LocationFlag
     {
         AssetSafety,
         AutoFit,
