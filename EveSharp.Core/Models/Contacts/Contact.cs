@@ -1,4 +1,4 @@
-using EveSharp.Core.Enums;
+using EveSharp.Core.Enums.Contacts;
 
 namespace EveSharp.Core.Models.Contacts
 {

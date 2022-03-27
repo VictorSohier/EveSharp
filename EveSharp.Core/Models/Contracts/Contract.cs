@@ -6,7 +6,7 @@ namespace EveSharp.Core.Models.Contracts
 	{
 		public int AcceptorId;
 		public int AssigneeId;
-		public ContractAvailability Availability;
+		public Availability Availability;
 		public double Buyout;
 		public double Collateral;
 		public int ContractId;
@@ -22,7 +22,7 @@ namespace EveSharp.Core.Models.Contracts
 		public double Price;
 		public double Reward;
 		public long StartLocationId;
-		public ContractStatus Status;
+		public Status Status;
 		public string Title;
 		public ContractType Type;
 		public double Volume;

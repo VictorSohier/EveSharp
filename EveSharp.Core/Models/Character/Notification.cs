@@ -1,5 +1,5 @@
-using EveSharp.Core.Enums;
 using EveSharp.Core.Enums.Character;
+using EveSharp.Core.Enums.Contacts;
 
 namespace EveSharp.Core.Models.Character
 {

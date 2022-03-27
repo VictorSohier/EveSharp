@@ -1,5 +1,4 @@
 using EveSharp.Core.Enums;
-using EveSharp.Core.Enums.Assets;
 
 namespace EveSharp.Core.Models.Assets
 {
@@ -10,7 +9,7 @@ namespace EveSharp.Core.Models.Assets
         public long ItemId;
         public LocationFlag LocationFlag;
         public long LocationId;
-        public AssetLocationType LocationType;
+        public Enums.Assets.LocationType LocationType;
         public int Quantity;
         public int TypeId;
     }

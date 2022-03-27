@@ -19,7 +19,7 @@ namespace EveSharp.Core.Models.Contracts
 		public double Price;
 		public double Reward;
 		public long StartLocationId;
-		public ContractStatus Status;
+		public Status Status;
 		public string Title;
 		public ContractType Type;
 		public double Volume;

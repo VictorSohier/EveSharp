@@ -1,4 +1,4 @@
-using EveSharp.Core.Enums.Character;
+using EveSharp.Core.Enums;
 
 namespace EveSharp.Core.Models.Character
 {
