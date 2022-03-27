@@ -8,5 +8,10 @@ namespace EveSharp.Core.Models.Contracts
 		public int RawQuantity;
 		public long RecordId;
 		public int TypeId;
+		public bool? IsBlueprintCopy;
+		public long? ItemId;
+		public int? MaterialEfficiency;
+		public int? Runs;
+		public int? TimeEfficiency;
 	}
 }

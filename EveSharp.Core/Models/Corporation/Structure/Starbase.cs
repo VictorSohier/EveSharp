@@ -4,7 +4,7 @@ namespace EveSharp.Core.Models.Corporation.Structure
 {
 	public struct Starbase
 	{
-		public int MoonId;
+		public int? MoonId;
 		public DateTime OnlinedSince;
 		public DateTime ReinforcedUntil;
 		public long StarbaseId;

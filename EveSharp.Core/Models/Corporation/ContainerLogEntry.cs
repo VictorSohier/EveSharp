@@ -12,10 +12,10 @@ namespace EveSharp.Core.Models.Corporation
 		public LocationFlag LocationFlag;
 		public long LocationId;
 		public DateTime LoggedAt;
-		public int NewConfigBitmask;
-		public int OldConfigBitmask;
+		public int? NewConfigBitmask;
+		public int? OldConfigBitmask;
 		public ContainerPasswordType PasswordType;
-		public int Quantity;
-		public int TypeId;
+		public int? Quantity;
+		public int? TypeId;
 	}
 }

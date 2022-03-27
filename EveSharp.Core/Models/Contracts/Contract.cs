@@ -4,27 +4,27 @@ namespace EveSharp.Core.Models.Contracts
 {
 	public struct Contract
 	{
-		public int AcceptorId;
-		public int AssigneeId;
+		public int? AcceptorId;
+		public int? AssigneeId;
 		public Availability Availability;
-		public double Buyout;
-		public double Collateral;
+		public double? Buyout;
+		public double? Collateral;
 		public int ContractId;
 		public DateTime DateAccepted;
 		public DateTime DateCompleted;
 		public DateTime DateExpired;
 		public DateTime DateIssued;
-		public int DaysToComplete;
-		public long EndLocationId;
+		public int? DaysToComplete;
+		public long? EndLocationId;
 		public bool ForCorporation;
 		public int IssuerCorporationId;
 		public int IssuerId;
-		public double Price;
-		public double Reward;
-		public long StartLocationId;
+		public double? Price;
+		public double? Reward;
+		public long? StartLocationId;
 		public Status Status;
 		public string Title;
 		public ContractType Type;
-		public double Volume;
+		public double? Volume;
 	}
 }

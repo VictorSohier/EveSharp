@@ -8,7 +8,7 @@ namespace EveSharp.Core.Models.Contacts
 		public ContactType ContactType;
 		public long[] LabelIds;
 		public float Standing;
-		public bool IsBlocked;
-		public bool IsWatched;
+		public bool? IsBlocked;
+		public bool? IsWatched;
 	}
 }

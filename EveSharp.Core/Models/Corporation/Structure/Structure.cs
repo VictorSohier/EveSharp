@@ -8,9 +8,9 @@ namespace EveSharp.Core.Models.Corporation.Structure
 		public DateTime FuelExpires;
 		public string Name;
 		public DateTime NextReinforceApply;
-		public int NextReinforceHour;
+		public int? NextReinforceHour;
 		public int ProfileId;
-		public int ReinforceHour;
+		public int? ReinforceHour;
 		public StructureService[] Services;
 		public StructureState State;
 		public DateTime StateTimerEnd;

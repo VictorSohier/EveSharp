@@ -5,7 +5,7 @@ namespace EveSharp.Core.Models.Character
 {
 	public struct Notification
 	{
-		public bool IsRead;
+		public bool? IsRead;
 		public long NotificationId;
 		public int SenderId;
 		public ContactType SenderType;
