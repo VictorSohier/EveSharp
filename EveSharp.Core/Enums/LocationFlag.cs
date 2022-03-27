@@ -120,6 +120,5 @@ namespace EveSharp.Core.Enums
         Unlocked,
 		Wallet,
         Wardrobe
-
     }
 }

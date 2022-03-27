@@ -1,4 +1,4 @@
-namespace EveSharp.Core.Models.Assets
+namespace EveSharp.Core.Models.Asset
 {
     public struct AssetName
     {

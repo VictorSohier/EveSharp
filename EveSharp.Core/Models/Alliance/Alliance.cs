@@ -1,4 +1,4 @@
-namespace EveSharp.Core.Models.Alliances
+namespace EveSharp.Core.Models.Alliance
 {
     public struct Alliance
     {

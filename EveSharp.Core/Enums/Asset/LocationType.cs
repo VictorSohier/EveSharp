@@ -1,4 +1,4 @@
-namespace EveSharp.Core.Enums.Assets
+namespace EveSharp.Core.Enums.Asset
 {
     public enum LocationType
     {

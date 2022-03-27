@@ -1,4 +1,4 @@
-namespace EveSharp.Core.Models.Bookmarks
+namespace EveSharp.Core.Models.Bookmark
 {
     public struct Folder
     {
