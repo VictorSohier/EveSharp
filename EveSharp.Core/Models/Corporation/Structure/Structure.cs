@@ -4,20 +4,20 @@ namespace EveSharp.Core.Models.Corporation.Structure
 {
 	public struct Structure
 	{
-		public int CorporationId;
-		public DateTime FuelExpires;
-		public string Name;
-		public DateTime NextReinforceApply;
-		public int? NextReinforceHour;
-		public int ProfileId;
-		public int? ReinforceHour;
-		public StructureService[] Services;
-		public StructureState State;
-		public DateTime StateTimerEnd;
-		public DateTime StateTimerStart;
-		public long StructureId;
-		public int SystemId;
-		public int TypeId;
-		public DateTime UnanchorsAt;
+		public int corporationId;
+		public DateTime fuelExpires;
+		public string name;
+		public DateTime nextReinforceApply;
+		public int? nextReinforceHour;
+		public int profileId;
+		public int? reinforceHour;
+		public StructureService[] services;
+		public StructureState state;
+		public DateTime stateTimerEnd;
+		public DateTime stateTimerStart;
+		public long structureId;
+		public int systemId;
+		public int typeId;
+		public DateTime unanchorsAt;
 	}
 }

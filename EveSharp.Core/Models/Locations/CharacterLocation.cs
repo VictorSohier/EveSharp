@@ -2,8 +2,8 @@ namespace EveSharp.Core.Models.Locations
 {
 	public struct CharacterLocation
 	{
-		public int SolarSystemId;
-		public int? StationId;
-		public long? StructureId;
+		public int solarSystemId;
+		public int? stationId;
+		public long? structureId;
 	}
 }

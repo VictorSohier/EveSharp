@@ -4,8 +4,8 @@ namespace EveSharp.Core.Models.Fleets
 {
 	public struct FleetMemberUpdate
 	{
-		public Role Role;
-		public long? SquadId;
-		public long? WingId;
+		public Role role;
+		public long? squadId;
+		public long? wingId;
 	}
 }

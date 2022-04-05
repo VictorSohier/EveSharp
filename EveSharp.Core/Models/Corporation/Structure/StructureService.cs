@@ -4,7 +4,7 @@ namespace EveSharp.Core.Models.Corporation.Structure
 {
 	public struct StructureService
 	{
-		public string Name;
-		public StructureServiceState State;
+		public string name;
+		public StructureServiceState state;
 	}
 }

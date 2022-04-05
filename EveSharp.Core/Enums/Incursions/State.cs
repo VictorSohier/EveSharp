@@ -1,4 +1,4 @@
-namespace EveSharp.Core.Models.Incursions
+namespace EveSharp.Core.Enums.Incursions
 {
 	public enum State
 	{

@@ -5,17 +5,17 @@ namespace EveSharp.Core.Models.Corporation
 {
 	public struct ContainerLogEntry
 	{
-		public ContainerLogActionType Action;
-		public int CharacterId;
-		public long ContainerId;
-		public int ContainerTypeId;
-		public LocationFlag LocationFlag;
-		public long LocationId;
-		public DateTime LoggedAt;
-		public int? NewConfigBitmask;
-		public int? OldConfigBitmask;
-		public ContainerPasswordType PasswordType;
-		public int? Quantity;
-		public int? TypeId;
+		public ContainerLogActionType action;
+		public int characterId;
+		public long containerId;
+		public int containerTypeId;
+		public LocationFlag locationFlag;
+		public long locationId;
+		public DateTime loggedAt;
+		public int? newConfigBitmask;
+		public int? oldConfigBitmask;
+		public ContainerPasswordType passwordType;
+		public int? quantity;
+		public int? typeId;
 	}
 }

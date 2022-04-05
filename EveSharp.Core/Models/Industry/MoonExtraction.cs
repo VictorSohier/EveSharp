@@ -2,10 +2,10 @@ namespace EveSharp.Core.Models.Industry
 {
 	public struct MoonExtraction
 	{
-		public DateTime ChunkArrivalTime;
-		public DateTime ExtractionStartTime;
-		public int MoonId;
-		public DateTime NaturalDecayTime;
-		public long StructureId;
+		public DateTime chunkArrivalTime;
+		public DateTime extractionStartTime;
+		public int moonId;
+		public DateTime naturalDecayTime;
+		public long structureId;
 	}
 }

@@ -4,8 +4,8 @@ namespace EveSharp.Core.Models.Corporation
 {
 	public struct Shareholder
 	{
-		public long ShareCount;
-		public int ShareholderId;
-		public ShareholderType ShareholderType;
+		public long shareCount;
+		public int shareholderId;
+		public ShareholderType shareholderType;
 	}
 }

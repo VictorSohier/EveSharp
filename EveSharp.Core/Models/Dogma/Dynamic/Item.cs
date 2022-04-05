@@ -2,10 +2,10 @@ namespace EveSharp.Core.Models.Dogma.Dynamic
 {
 	public struct Item
 	{
-		public int CreatedBy;
-		public Attribute[] DogmaAttributes;
-		public Effect[] DogmaEffects;
-		public int MutatorTypeId;
-		public int SourceTypeId;
+		public int createdBy;
+		public Attribute[] dogmaAttributes;
+		public Effect[] dogmaEffects;
+		public int mutatorTypeId;
+		public int sourceTypeId;
 	}
 }

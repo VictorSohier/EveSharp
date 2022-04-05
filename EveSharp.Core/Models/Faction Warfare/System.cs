@@ -4,11 +4,11 @@ namespace EveSharp.Core.Models.FactionWarfare
 {
 	public struct System
 	{
-		public Status Contested;
-		public int OccupierFactionId;
-		public int OwnerFactionId;
-		public int SolarSystemId;
-		public int VictoryPoints;
-		public int VictoryPointsThreshold;
+		public Status contested;
+		public int occupierFactionId;
+		public int ownerFactionId;
+		public int solarSystemId;
+		public int victoryPoints;
+		public int victoryPointsThreshold;
 	}
 }

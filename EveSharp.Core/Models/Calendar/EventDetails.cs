@@ -4,15 +4,15 @@ namespace EveSharp.Core.Models.Calendar
 {
 	public struct EventDetails
 	{
-		public DateTime Date;
-		public int Duration;
-		public int EventId;
-		public int Importance;
-		public int OwnerId;
-		public string OwnerName;
-		public EventOwnerType OwnerType;
-		public string Response;
-		public string Text;
-		public string Title;
+		public DateTime date;
+		public int duration;
+		public int eventId;
+		public int importance;
+		public int ownerId;
+		public string ownerName;
+		public EventOwnerType ownerType;
+		public string response;
+		public string text;
+		public string title;
 	}
 }

@@ -4,7 +4,7 @@ namespace EveSharp.Core.Models.Calendar
 {
 	public struct AttendeeResponse
 	{
-		public int? CharacterId;
-		public Response EventResponse;
+		public int? characterId;
+		public Response eventResponse;
 	}
 }

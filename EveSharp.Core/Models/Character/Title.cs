@@ -2,7 +2,7 @@ namespace EveSharp.Core.Models.Character
 {
 	public struct Title
 	{
-		public string Name;
-		public int? TitleId;
+		public string name;
+		public int? titleId;
 	}
 }

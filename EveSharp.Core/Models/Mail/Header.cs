@@ -2,12 +2,12 @@ namespace EveSharp.Core.Models.Mail
 {
 	public struct Header
 	{
-		public int? From;
-		public bool? IsRead;
-		public int[] Labels;
-		public int? MailId;
-		public Recipient[] Recipients;
-		public string Subject;
-		public DateTime Timestamp;
+		public int? from;
+		public bool? isRead;
+		public int[] labels;
+		public int? mailId;
+		public Recipient[] recipients;
+		public string subject;
+		public DateTime timestamp;
 	}
 }

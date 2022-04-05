@@ -4,16 +4,16 @@ namespace EveSharp.Core.Models.Character
 {
 	public struct Character
 	{
-		public int? AllianceId;
-		public DateTime Birthday;
-		public int BloodlineId;
-		public int CorporationId;
-		public string Description;
-		public int? FactionId;
-		public Gender Gender;
-		public string Name;
-		public int RaceId;
-		public float? SecurityStatus;
-		public string Title;
+		public int? allianceId;
+		public DateTime birthday;
+		public int bloodlineId;
+		public int corporationId;
+		public string description;
+		public int? factionId;
+		public Gender gender;
+		public string name;
+		public int raceId;
+		public float? securityStatus;
+		public string title;
 	}
 }

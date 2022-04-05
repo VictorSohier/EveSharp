@@ -4,14 +4,14 @@ namespace EveSharp.Core.Models.Character
 {
 	public struct Medal
 	{
-		public int CorporationId;
-		public DateTime Date;
-		public string Description;
-		public int IssuerId;
-		public int MedalId;
-		public string Reason;
-		public string Title;
-		public GraphicComponent[] Graphics;
-		public Status Status;
+		public int corporationId;
+		public DateTime date;
+		public string description;
+		public int issuerId;
+		public int medalId;
+		public string reason;
+		public string title;
+		public GraphicComponent[] graphics;
+		public Status status;
 	}
 }

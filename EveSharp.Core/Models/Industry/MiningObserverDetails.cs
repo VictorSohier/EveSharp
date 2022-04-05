@@ -2,10 +2,10 @@ namespace EveSharp.Core.Models.Industry
 {
 	public struct MiningObserverDetails
 	{
-		public int CharacterId;
-		public DateTime LastUpdated;
-		public long Quantity;
-		public int RecordedCorporationId;
-		public int TypeId;
+		public int characterId;
+		public DateTime lastUpdated;
+		public long quantity;
+		public int recordedCorporationId;
+		public int typeId;
 	}
 }

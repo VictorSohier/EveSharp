@@ -2,10 +2,10 @@ namespace EveSharp.Core.Models.FactionWarfare.Statistics.Faction
 {
 	public struct Aggregate
 	{
-		public int FactionId;
-		public RollingRecord Kills;
-		public int Pilots;
-		public int SystemsControlled;
-		public RollingRecord VictoryPoints;
+		public int factionId;
+		public RollingRecord kills;
+		public int pilots;
+		public int systemsControlled;
+		public RollingRecord victoryPoints;
 	}
 }

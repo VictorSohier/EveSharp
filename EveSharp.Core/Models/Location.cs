@@ -4,7 +4,7 @@ namespace EveSharp.Core.Models
 {
 	public struct Location
 	{
-		public long LocationId;
-		public LocationType LocationType;
+		public long locationId;
+		public LocationType locationType;
 	}
 }

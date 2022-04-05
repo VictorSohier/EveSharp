@@ -4,13 +4,13 @@ namespace EveSharp.Core.Models.Corporation.Structure
 {
 	public struct Starbase
 	{
-		public int? MoonId;
-		public DateTime OnlinedSince;
-		public DateTime ReinforcedUntil;
-		public long StarbaseId;
-		public StarbaseState State;
-		public int SystemId;
-		public int TypeId;
-		public DateTime UnanchorAt;
+		public int? moonId;
+		public DateTime onlinedSince;
+		public DateTime reinforcedUntil;
+		public long starbaseId;
+		public StarbaseState state;
+		public int systemId;
+		public int typeId;
+		public DateTime unanchorAt;
 	}
 }

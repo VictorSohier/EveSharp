@@ -4,11 +4,11 @@ namespace EveSharp.Core.Models.Corporation
 {
 	public struct IssuedMedal
 	{
-		public int CharacterId;
-		public DateTime IssuedAt;
-		public int IssuerId;
-		public int MedalId;
-		public string Reason;
-		public Status Status;
+		public int characterId;
+		public DateTime issuedAt;
+		public int issuerId;
+		public int medalId;
+		public string reason;
+		public Status status;
 	}
 }

@@ -4,11 +4,11 @@ namespace EveSharp.Core.Models.Dogma.Effect
 {
 	public struct Modifier
 	{
-		public string Domain;
-		public int? EffectId;
-		public string Func;
-		public int? ModifiedAttributeId;
-		public int? ModifyingAttributeId;
-		public int? Operator;
+		public string domain;
+		public int? effectId;
+		public string func;
+		public int? modifiedAttributeId;
+		public int? modifyingAttributeId;
+		public int? @operator;
 	}
 }

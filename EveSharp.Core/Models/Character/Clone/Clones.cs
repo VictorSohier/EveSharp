@@ -2,9 +2,9 @@ namespace EveSharp.Core.Models.Character.Clone
 {
 	public struct Clone
 	{
-		public DateTime LastCloneJumpDate;
-		public DateTime LastStationChangeDate;
-		public JumpClone[] JumpClones;
-		public Location HomeLocation;
+		public DateTime lastCloneJumpDate;
+		public DateTime lastStationChangeDate;
+		public JumpClone[] jumpClones;
+		public Location homeLocation;
 	}
 }

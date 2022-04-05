@@ -2,9 +2,9 @@ namespace EveSharp.Core.Models.Fleets
 {
 	public struct FleetDetails
 	{
-		public bool IsFreeMove;
-		public bool IsRegistered;
-		public bool IsVoiceEnabled;
-		public string MOTD;
+		public bool isFreeMove;
+		public bool isRegistered;
+		public bool isVoiceEnabled;
+		public string mOTD;
 	}
 }

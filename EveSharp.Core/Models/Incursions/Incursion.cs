@@ -1,16 +1,16 @@
-using EveSharp.Core.Models.Incursions;
+using EveSharp.Core.Enums.Incursions;
 
-namespace EveSharp.Core.Models.Fleets
+namespace EveSharp.Core.Models.Incursions
 {
 	public struct Incursion
 	{
-		public int ConstellationId;
-		public int FactionId;
-		public bool HasBoss;
-		public int[] InfestedSolarSystems;
-		public float Influence;
-		public int StagingSolarSystemId;
-		public State State;
-		public string Type;
+		public int constellationId;
+		public int factionId;
+		public bool hasBoss;
+		public int[] infestedSolarSystems;
+		public float influence;
+		public int stagingSolarSystemId;
+		public State state;
+		public string type;
 	}
 }

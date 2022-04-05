@@ -4,9 +4,9 @@ namespace EveSharp.Core.Models.Character
 {
 	public struct CharacterRoles
 	{
-		public Role[] Roles;
-		public Role[] RolesAtBase;
-		public Role[] RolesAtHQ;
-		public Role[] RolesAtOther;
+		public Role[] roles;
+		public Role[] rolesAtBase;
+		public Role[] rolesAtHQ;
+		public Role[] rolesAtOther;
 	}
 }

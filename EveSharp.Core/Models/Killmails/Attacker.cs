@@ -2,14 +2,14 @@ namespace EveSharp.Core.Models.Killmails
 {
 	public struct Attacker
 	{
-		public int? AllianceId;
-		public int? CharacterId;
-		public int? CorporationId;
-		public int DamageDone;
-		public int? FactionId;
-		public bool FinalBlow;
-		public float SecurityStatus;
-		public int? ShipTypeId;
-		public int? WeaponTypeId;
+		public int? allianceId;
+		public int? characterId;
+		public int? corporationId;
+		public int damageDone;
+		public int? factionId;
+		public bool finalBlow;
+		public float securityStatus;
+		public int? shipTypeId;
+		public int? weaponTypeId;
 	}
 }

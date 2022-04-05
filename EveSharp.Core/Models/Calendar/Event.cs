@@ -4,10 +4,10 @@ namespace EveSharp.Core.Models.Calendar
 {
 	public struct Event
 	{
-		public DateTime EventDate;
-		public int? EventId;
-		public Response EventResponse;
-		public int? Importance;
-		public string Title;
+		public DateTime eventDate;
+		public int? eventId;
+		public Response eventResponse;
+		public int? importance;
+		public string title;
 	}
 }

@@ -2,7 +2,7 @@ namespace EveSharp.Core.Models.Contacts
 {
 	public struct ContactLabel
 	{
-		public long LabelId;
-		public string LabelName;
+		public long labelId;
+		public string labelName;
 	}
 }

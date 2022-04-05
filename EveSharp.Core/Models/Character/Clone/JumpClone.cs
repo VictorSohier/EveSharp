@@ -4,10 +4,10 @@ namespace EveSharp.Core.Models.Character.Clone
 {
 	public struct JumpClone
 	{
-		public int[] Implants;
-		public int JumpCloneId;
-		public long LocationId;
-		public LocationType LocationType;
-		public string Name;
+		public int[] implants;
+		public int jumpCloneId;
+		public long locationId;
+		public LocationType locationType;
+		public string name;
 	}
 }

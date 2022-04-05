@@ -4,19 +4,19 @@ namespace EveSharp.Core.Models.Corporation.Structure
 {
 	public struct StarbaseDetails
 	{
-		public bool AllowAllianceMembers;
-		public bool AllowCorporationMembers;
-		public StarbaseRole Anchor;
-		public bool AttackIfAtWar;
-		public bool AttackIfSecurityStatusDropping;
-		public float? AttackSecurityStatusThreshold;
-		public float? AttackStandingThreshold;
-		public StarbaseRole FuelBayTake;
-		public StarbaseRole FuelBayView;
-		public Item[] Fuels;
-		public StarbaseRole Offline;
-		public StarbaseRole Online;
-		public StarbaseRole Unanchor;
-		public bool UseAllianceStandings;
+		public bool allowAllianceMembers;
+		public bool allowCorporationMembers;
+		public StarbaseRole anchor;
+		public bool attackIfAtWar;
+		public bool attackIfSecurityStatusDropping;
+		public float? attackSecurityStatusThreshold;
+		public float? attackStandingThreshold;
+		public StarbaseRole fuelBayTake;
+		public StarbaseRole fuelBayView;
+		public Item[] fuels;
+		public StarbaseRole offline;
+		public StarbaseRole online;
+		public StarbaseRole unanchor;
+		public bool useAllianceStandings;
 	}
 }

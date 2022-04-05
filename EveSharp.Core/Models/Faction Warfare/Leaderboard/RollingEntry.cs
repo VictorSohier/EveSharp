@@ -2,8 +2,8 @@ namespace EveSharp.Core.Models.FactionWarfare.Leaderboard
 {
 	public struct RollingEntry
 	{
-		public Count[] ActiveTotal;
-		public Count[] LastWeek;
-		public Count[] Yesterday;
+		public Count[] activeTotal;
+		public Count[] lastWeek;
+		public Count[] yesterday;
 	}
 }

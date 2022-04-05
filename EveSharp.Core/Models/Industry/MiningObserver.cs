@@ -4,8 +4,8 @@ namespace EveSharp.Core.Models.Industry
 {
 	public struct MiningObserver
 	{
-		public DateTime LastUpdated;
-		public long ObserverId;
-		public ObserverType ObserverType;
+		public DateTime lastUpdated;
+		public long observerId;
+		public ObserverType observerType;
 	}
 }

@@ -2,9 +2,9 @@ namespace EveSharp.Core.Models.Mail
 {
 	public struct Mail
 	{
-		public long? ApprovedCost;
-		public string Body;
-		public Recipient[] Recipients;
-		public string Subject;
+		public long? approvedCost;
+		public string body;
+		public Recipient[] recipients;
+		public string subject;
 	}
 }

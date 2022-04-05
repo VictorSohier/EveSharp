@@ -2,16 +2,16 @@ namespace EveSharp.Core.Models.Contracts
 {
 	public struct Item
 	{
-		public bool IsIncluded;
-		public bool IsSingleton;
-		public int Quantity;
-		public int RawQuantity;
-		public long RecordId;
-		public int TypeId;
-		public bool? IsBlueprintCopy;
-		public long? ItemId;
-		public int? MaterialEfficiency;
-		public int? Runs;
-		public int? TimeEfficiency;
+		public bool isIncluded;
+		public bool isSingleton;
+		public int quantity;
+		public int rawQuantity;
+		public long recordId;
+		public int typeId;
+		public bool? isBlueprintCopy;
+		public long? itemId;
+		public int? materialEfficiency;
+		public int? runs;
+		public int? timeEfficiency;
 	}
 }

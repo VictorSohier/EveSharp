@@ -2,7 +2,7 @@ namespace EveSharp.Core.Models.Mail
 {
 	public struct Mailbox
 	{
-		public Label[] Labels;
-		public int? TotalUnreadCount;
+		public Label[] labels;
+		public int? totalUnreadCount;
 	}
 }

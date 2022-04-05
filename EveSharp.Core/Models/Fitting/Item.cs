@@ -4,8 +4,8 @@ namespace EveSharp.Core.Models.Fitting
 {
 	public struct Item
 	{
-		public LocationFlag Flag;
-		public int Quantity;
-		public int TypeId;
+		public LocationFlag flag;
+		public int quantity;
+		public int typeId;
 	}
 }

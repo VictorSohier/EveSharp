@@ -2,8 +2,8 @@ namespace EveSharp.Core.Models.Bookmark
 {
     public struct Folder
     {
-        public int? CreatorId;
-        public int FolderId;
-        public string Name;
+        public int? creatorId;
+        public int folderId;
+        public string name;
     }
 }

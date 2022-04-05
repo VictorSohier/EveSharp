@@ -4,14 +4,14 @@ namespace EveSharp.Core.Models.Corporation
 {
 	public struct CorporationRole
 	{
-		public int CharacterId;
-		public Role[] GrantableRoles;
-		public Role[] GrantableRolesAtBase;
-		public Role[] GrantableRolesAtHQ;
-		public Role[] GrantableRolesAtOther;
-		public Role[] Roles;
-		public Role[] RolesAtBase;
-		public Role[] RolesAtHq;
-		public Role[] RolesAtOther;
+		public int characterId;
+		public Role[] grantableRoles;
+		public Role[] grantableRolesAtBase;
+		public Role[] grantableRolesAtHQ;
+		public Role[] grantableRolesAtOther;
+		public Role[] roles;
+		public Role[] rolesAtBase;
+		public Role[] rolesAtHq;
+		public Role[] rolesAtOther;
 	}
 }

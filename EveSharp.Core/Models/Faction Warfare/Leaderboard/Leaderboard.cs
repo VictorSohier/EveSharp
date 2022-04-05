@@ -2,7 +2,7 @@ namespace EveSharp.Core.Models.FactionWarfare.Leaderboard
 {
 	public struct Leaderboard
 	{
-		public RollingEntry Kills;
-		public RollingEntry VictoryPoints;
+		public RollingEntry kills;
+		public RollingEntry victoryPoints;
 	}
 }

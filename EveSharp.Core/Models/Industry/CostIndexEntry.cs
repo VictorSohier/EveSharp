@@ -4,7 +4,7 @@ namespace EveSharp.Core.Models.Industry
 {
 	public struct CostIndexEntry
 	{
-		public Activity Activity;
-		public float CostIndex;
+		public Activity activity;
+		public float costIndex;
 	}
 }

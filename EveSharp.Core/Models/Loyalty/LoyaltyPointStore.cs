@@ -2,12 +2,12 @@ namespace EveSharp.Core.Models.Loyalty
 {
 	public struct LoyaltyPointStore
 	{
-		public int? AKCost;
-		public long ISKCost;
-		public int LPCost;
-		public int OfferId;
-		public int Quantity;
-		public ExchangeItem[] RequiredItems;
-		public int TypeId;
+		public int? aKCost;
+		public long iSKCost;
+		public int lPCost;
+		public int offerId;
+		public int quantity;
+		public ExchangeItem[] requiredItems;
+		public int typeId;
 	}
 }

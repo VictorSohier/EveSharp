@@ -2,7 +2,7 @@ namespace EveSharp.Core.Models.Insurance
 {
 	public struct Prices
 	{
-		public InsurancePriceLevel Levels;
-		public int TypeId;
+		public InsurancePriceLevel levels;
+		public int typeId;
 	}
 }

@@ -2,12 +2,12 @@ namespace EveSharp.Core.Models.Killmails
 {
 	public struct KillmailDetails
 	{
-		public Attacker[] Attackers;
-		public int KillmailId;
-		public DateTime KillmailTime;
-		public int? MoonId;
-		public int SolarSystemId;
-		public Victim Victim;
-		public int? WarId;
+		public Attacker[] attackers;
+		public int killmailId;
+		public DateTime killmailTime;
+		public int? moonId;
+		public int solarSystemId;
+		public Victim victim;
+		public int? warId;
 	}
 }

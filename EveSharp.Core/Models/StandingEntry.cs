@@ -4,8 +4,8 @@ namespace EveSharp.Core.Models
 {
 	public struct StandingEntry
 	{
-		public int FromId;
-		public float Standing;
-		public NPCType FromType;
+		public int fromId;
+		public float standing;
+		public NPCType fromType;
 	}
 }
