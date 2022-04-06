@@ -1,0 +1,33 @@
+namespace EveSharp.Core.Enums.Universe
+{
+	public enum Services
+	{
+		BountyMissions,
+		AssasinationMissions,
+		CourierMissions,
+		Interbus,
+		ReprocessingPlant,
+		Refinery,
+		Market,
+		BlackMarket,
+		StockExchange,
+		Cloning,
+		Surgery,
+		DnaTherapy,
+		RepairFacilities,
+		Factory,
+		Labratory,
+		Gambling,
+		Fitting,
+		Paintshop,
+		News,
+		Storage,
+		Insurance,
+		Docking,
+		OfficeRental,
+		JumpCloneFacility,
+		LoyaltyPointStore,
+		NavyOffices,
+		SecurityOffices
+	}
+}
