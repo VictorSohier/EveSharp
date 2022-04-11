@@ -1,5 +1,9 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace EveSharp.Core.Enums.Universe
 {
+	[JsonConverter(typeof(StringEnumConverter))]
 	public enum Services
 	{
 		BountyMissions,
