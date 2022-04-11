@@ -1,6 +1,6 @@
 namespace EveSharp.Core.Models.Wallet
 {
-	public struct CorporationWallet
+	public struct CorporationWalletDivision
 	{
 		public double balance;
 		public int division;

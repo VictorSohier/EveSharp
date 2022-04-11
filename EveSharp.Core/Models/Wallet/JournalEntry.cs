@@ -13,7 +13,7 @@ namespace EveSharp.Core.Models.Wallet
 		public int? firstPartyId;
 		public long id;
 		public string reason;
-		public TransactionType refType;
+		public RefType refType;
 		public int? secondPartyId;
 		public double? tax;
 		public int? taxReceiverId;

@@ -1,0 +1,12 @@
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/EveSharp.Core.csproj.AssemblyReference.cache
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/EveSharp.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/EveSharp.Core.AssemblyInfoInputs.cache
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/EveSharp.Core.AssemblyInfo.cs
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/EveSharp.Core.csproj.CoreCompileInputs.cache
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/bin/Debug/net6.0/EveSharp.Core.deps.json
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/bin/Debug/net6.0/EveSharp.Core.dll
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/bin/Debug/net6.0/ref/EveSharp.Core.dll
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/bin/Debug/net6.0/EveSharp.Core.pdb
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/EveSharp.Core.dll
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/ref/EveSharp.Core.dll
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/Debug/net6.0/EveSharp.Core.pdb

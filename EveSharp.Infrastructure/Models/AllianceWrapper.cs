@@ -13,7 +13,7 @@ namespace EveSharp.Infrastructure.Models
 		public AllianceWrapper()
 		{
 			_client = new();
-			_client.BaseAddress = new("https://esi.evetech.net/latest/alliances");
+			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/alliances");
 			
 			JsonSerializerSettings settings = new()
 			{

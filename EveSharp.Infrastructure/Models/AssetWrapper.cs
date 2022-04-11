@@ -13,7 +13,7 @@ namespace EveSharp.Infrastructure.Models
 		public AssetWrapper(string authToken)
 		{
 			_client = new();
-			_client.BaseAddress = new("https://esi.evetech.net/latest");
+			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
 			
 			JsonSerializerSettings settings = new()
@@ -30,9 +30,9 @@ namespace EveSharp.Infrastructure.Models
 			_serializer = JsonSerializer.Create(settings);
 		}
 		
-		public async Task<Asset[]> GetCharacterAssetsAsync(int characterId, string datasource = "tranquility")
+		public async Task<Asset[]> GetCharacterAssetsAsync(int characterId, int page = 1, string datasource = "tranquility")
 		{
-			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/assets?datasource={datasource}");
+			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/assets?datasource={datasource}&page={page}");
 			Asset[] ret = _serializer.Deserialize<Asset[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
@@ -51,9 +51,9 @@ namespace EveSharp.Infrastructure.Models
 			return ret;
 		}
 		
-		public async Task<Asset[]> GetCorporationAssetsAsync(int corporationId, string datasource = "tranquility")
+		public async Task<Asset[]> GetCorporationAssetsAsync(int corporationId, int page = 1, string datasource = "tranquility")
 		{
-			HttpResponseMessage message = await _client.GetAsync($"corporation/{corporationId}/assets?datasource={datasource}");
+			HttpResponseMessage message = await _client.GetAsync($"corporation/{corporationId}/assets?datasource={datasource}&page={page}");
 			Asset[] ret = _serializer.Deserialize<Asset[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
