@@ -15,19 +15,7 @@ namespace EveSharp.Infrastructure.Models
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
-			
-			JsonSerializerSettings settings = new()
-			{
-				DateParseHandling = DateParseHandling.DateTime,
-				DateFormatHandling = DateFormatHandling.IsoDateFormat,
-				ContractResolver = new DefaultContractResolver()
-				{
-					NamingStrategy = new SnakeCaseNamingStrategy()
-				},
-				NullValueHandling = NullValueHandling.Include
-			};
-			
-			_serializer = JsonSerializer.Create(settings);
+			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
 		}
 		
 		public async Task<Asset[]> GetCharacterAssetsAsync(int characterId, int page = 1, string datasource = "tranquility")
@@ -39,14 +27,14 @@ namespace EveSharp.Infrastructure.Models
 		
 		public async Task<Location[]> GetCharacterAssetLocationsAsync(int characterId, string datasource = "tranquility", params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/locations?datasource={datasource}", JsonContent.Create<long[]>(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/locations?datasource={datasource}", JsonContent.Create(itemIds));
 			Location[] ret = _serializer.Deserialize<Location[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
 		
 		public async Task<AssetName[]> GetCharacterAssetNamesAsync(int characterId, string datasource = "tranquility", params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/names?datasource={datasource}", JsonContent.Create<long[]>(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/names?datasource={datasource}", JsonContent.Create(itemIds));
 			AssetName[] ret = _serializer.Deserialize<AssetName[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
@@ -60,14 +48,14 @@ namespace EveSharp.Infrastructure.Models
 		
 		public async Task<Location[]> GetCorporationAssetLocationsAsync(int corporationId, string datasource = "tranquility", params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/locations?datasource={datasource}", JsonContent.Create<long[]>(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/locations?datasource={datasource}", JsonContent.Create(itemIds));
 			Location[] ret = _serializer.Deserialize<Location[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
 		
 		public async Task<AssetName[]> GetCorporationAssetNamesAsync(int corporationId, string datasource = "tranquility", params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/names?datasource={datasource}", JsonContent.Create<long[]>(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/names?datasource={datasource}", JsonContent.Create(itemIds));
 			AssetName[] ret = _serializer.Deserialize<AssetName[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}

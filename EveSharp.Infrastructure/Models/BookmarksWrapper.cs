@@ -14,19 +14,7 @@ namespace EveSharp.Infrastructure.Models
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
-			
-			JsonSerializerSettings settings = new()
-			{
-				DateParseHandling = DateParseHandling.DateTime,
-				DateFormatHandling = DateFormatHandling.IsoDateFormat,
-				ContractResolver = new DefaultContractResolver()
-				{
-					NamingStrategy = new SnakeCaseNamingStrategy()
-				},
-				NullValueHandling = NullValueHandling.Include
-			};
-			
-			_serializer = JsonSerializer.Create(settings);
+			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
 		}
 		
 		public async Task<Bookmark[]> GetCharacterBookmarksAsync(int characterId, int page = 1, string datasource = "tranquility")

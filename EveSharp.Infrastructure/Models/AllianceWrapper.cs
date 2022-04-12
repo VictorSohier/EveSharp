@@ -1,7 +1,6 @@
 using EveSharp.Core.Models;
 using EveSharp.Core.Models.Alliance;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace EveSharp.Infrastructure.Models
 {
@@ -14,19 +13,7 @@ namespace EveSharp.Infrastructure.Models
 		{
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/alliances");
-			
-			JsonSerializerSettings settings = new()
-			{
-				DateParseHandling = DateParseHandling.DateTime,
-				DateFormatHandling = DateFormatHandling.IsoDateFormat,
-				ContractResolver = new DefaultContractResolver()
-				{
-					NamingStrategy = new SnakeCaseNamingStrategy()
-				},
-				NullValueHandling = NullValueHandling.Include
-			};
-			
-			_serializer = JsonSerializer.Create(settings);
+			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
 		}
 		
 		public async Task<int[]> GetAlliancesAsync(string datasource = "tranquility")
