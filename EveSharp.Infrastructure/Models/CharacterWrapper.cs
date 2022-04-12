@@ -18,7 +18,7 @@ namespace EveSharp.Infrastructure.Models
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/characters");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
-			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
+			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
 		public CharacterWrapper()

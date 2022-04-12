@@ -14,14 +14,14 @@ namespace EveSharp.Infrastructure.Models
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
-			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
+			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
 		public ContractWrapper()
 		{
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}");
-			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
+			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
 		public async Task<Contract[]> GetCharacterContractsAsync(int characterId, int page = 1, string datasource = "tranquilty")

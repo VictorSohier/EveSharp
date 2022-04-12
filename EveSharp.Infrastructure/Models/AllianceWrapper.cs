@@ -13,7 +13,7 @@ namespace EveSharp.Infrastructure.Models
 		{
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/alliances");
-			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
+			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
 		public async Task<int[]> GetAlliancesAsync(string datasource = "tranquility")

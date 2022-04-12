@@ -17,14 +17,14 @@ namespace EveSharp.Infrastructure.Models
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/corporations");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
-			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
+			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
 		public CorporationWrapper()
 		{
 			_client = new();
 			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/corporations");
-			_serializer = JsonSerializer.Create(WrapperConfig._instance.settings);
+			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
 		public async Task<Corporation> GetCorporationAsync(int corporationId, string datasource = "tranquilty")
