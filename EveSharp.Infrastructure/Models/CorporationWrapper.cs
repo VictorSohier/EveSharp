@@ -85,8 +85,8 @@ namespace EveSharp.Infrastructure.Models
 				HttpResponseMessage message = await _client.GetAsync($"corporations/{corporationId}/containers/logs?datasource={datasource}");
 				JObject obj = JObject.Parse(await message.Content.ReadAsStringAsync());
 				ret = (
-					obj.SelectToken("hangar")?.Value<CorporationDivision[]>(),
-					obj.SelectToken("wallet")?.Value<CorporationDivision[]>()
+					obj.SelectToken("hangar")?.Value<CorporationDivision[]>() ?? new CorporationDivision[0],
+					obj.SelectToken("wallet")?.Value<CorporationDivision[]>() ?? new CorporationDivision[0]
 					);
 			}
 			else

@@ -1,8 +1,6 @@
-using System.Runtime.InteropServices;
-
 namespace EveSharp.Core.Models.Dogma
 {
-	public struct Attribute
+	public struct DogmaAttribute
 	{
 		public int attributeId;
 		public float? defaultValue;
