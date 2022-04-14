@@ -26,7 +26,9 @@ namespace EveSharp.Infrastructure.Models
 		
 		public async Task AddFittingAsync(int characterId, Fit fitting, string datasource="tranquility")
 		{
-			await _client.PostAsync($"{characterId}/fittings?datasource={datasource}", JsonContent.Create(fitting));
+			StringWriter sw = new();
+			_serializer.Serialize(sw, fitting);
+			await _client.PostAsync($"{characterId}/fittings?datasource={datasource}", new StringContent(sw.ToString()));
 		}
 		
 		public async Task DeleteFittingAsync(int characterId, int fittingId, string datasource="tranquility")
