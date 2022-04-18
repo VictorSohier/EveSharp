@@ -13,7 +13,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		public DogmaWrapper()
 		{
 			_client = new();
-			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/dogma");
+			_client.BaseAddress = new($"{WrapperConfig._instance.DOMAIN}/{WrapperConfig._instance.API_VERSION}/dogma");
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		

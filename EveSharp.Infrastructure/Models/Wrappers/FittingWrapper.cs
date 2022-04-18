@@ -13,7 +13,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		public FittingWrapper(string authToken)
 		{
 			_client = new();
-			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/characters");
+			_client.BaseAddress = new($"{WrapperConfig._instance.DOMAIN}/{WrapperConfig._instance.API_VERSION}/characters");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}

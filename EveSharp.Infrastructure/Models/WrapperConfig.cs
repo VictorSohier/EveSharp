@@ -1,13 +1,15 @@
 using System.Net;
+using EveSharp.Infrastructure.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace EveSharp.Infrastructure.Models
 {
-	public class WrapperConfig
+	internal class WrapperConfig
 	{
 		public readonly static WrapperConfig _instance = new();
 		public readonly string API_VERSION = "latest";
+		public readonly string DOMAIN = "https://esi.evetech.net";
 		public readonly JsonSerializer SERIALIZER = JsonSerializer.Create(
 			new()
 			{

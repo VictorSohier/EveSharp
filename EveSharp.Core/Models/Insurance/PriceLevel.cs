@@ -1,6 +1,6 @@
 namespace EveSharp.Core.Models.Insurance
 {
-	public struct InsurancePriceLevel
+	public struct PriceLevel
 	{
 		public float cost;
 		public string name;

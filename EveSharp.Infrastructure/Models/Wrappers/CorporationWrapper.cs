@@ -12,18 +12,15 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		private readonly HttpClient _client;
 		private readonly JsonSerializer _serializer;
 		
-		public CorporationWrapper(string authToken)
+		public CorporationWrapper(string authToken) : this()
 		{
-			_client = new();
-			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/corporations");
 			_client.DefaultRequestHeaders.Add("authorization", authToken);
-			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
 		public CorporationWrapper()
 		{
 			_client = new();
-			_client.BaseAddress = new($"https://esi.evetech.net/{WrapperConfig._instance.API_VERSION}/corporations");
+			_client.BaseAddress = new($"{WrapperConfig._instance.DOMAIN}/{WrapperConfig._instance.API_VERSION}/corporations");
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
