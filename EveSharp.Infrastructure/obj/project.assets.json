@@ -14,6 +14,9 @@
       "EveSharp.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
         "compile": {
           "bin/placeholder/EveSharp.Core.dll": {}
         },
@@ -69,11 +72,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
+      "projectUniqueName": "/home/vsohier/Repos/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
       "projectName": "EveSharp.Infrastructure",
-      "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
+      "projectPath": "/home/vsohier/Repos/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
       "packagesPath": "/home/vsohier/.nuget/packages/",
-      "outputPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/obj/",
+      "outputPath": "/home/vsohier/Repos/EveSharp/EveSharp.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vsohier/.nuget/NuGet/NuGet.Config"
@@ -88,8 +91,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj": {
-              "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj"
+            "/home/vsohier/Repos/EveSharp/EveSharp.Core/EveSharp.Core.csproj": {
+              "projectPath": "/home/vsohier/Repos/EveSharp/EveSharp.Core/EveSharp.Core.csproj"
             }
           }
         }
@@ -119,18 +122,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.2, 6.0.2]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/vsohier/.dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Gh/Ybrs8wRpFdPnRmqeQudpBqwUk3P/lzzbYSW2I1XLvwMIv8MqzLAMkvq9Yns6ghOFyzRU7eGEp1jesx51EoA==",
+  "dgSpecHash": "eA376UMqcFabRz0Xvk0L93ET3Fb0PFAc2/+rwLUkTTB66CcQnMAb5Clh4uSbluVi1AojInGL16hzCY8Dss4Lww==",
   "success": true,
-  "projectFilePath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj",
+  "projectFilePath": "/home/vsohier/Repos/EveSharp/EveSharp.Core/EveSharp.Core.csproj",
   "expectedPackageFiles": [
-    "/home/vsohier/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
-    "/home/vsohier/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.2/microsoft.aspnetcore.app.ref.6.0.2.nupkg.sha512"
+    "/home/vsohier/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
