@@ -17,16 +17,16 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<int[]> GetAttributeIdsAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<int[]> GetAttributeIdsAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"attributes?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"attributes?datasource={Enum.GetName(datasource)?.ToLower()}");
 			int[] ret = _serializer.Deserialize<int[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
 		
-		public async Task<DogmaAttribute> GetAttributeAsync(int attributeId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<DogmaAttribute> GetAttributeAsync(int attributeId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"attributes/{attributeId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"attributes/{attributeId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			DogmaAttribute ret;
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -34,9 +34,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Item> GetDynamicItemInstanceAsync(int typeId, int instanceId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Item> GetDynamicItemInstanceAsync(int typeId, int instanceId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"dynamic/items/{typeId}/{instanceId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"dynamic/items/{typeId}/{instanceId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Item ret;
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -44,16 +44,16 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<int[]> GetEffectIdsAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<int[]> GetEffectIdsAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"effects?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"effects?datasource={Enum.GetName(datasource)?.ToLower()}");
 			int[] ret = _serializer.Deserialize<int[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
 		
-		public async Task<EveSharp.Core.Models.Dogma.Effect.Effect> GetEffectAsync(int effectId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<EveSharp.Core.Models.Dogma.Effect.Effect> GetEffectAsync(int effectId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"effects/{effectId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"effects/{effectId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			EveSharp.Core.Models.Dogma.Effect.Effect ret;
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);

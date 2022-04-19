@@ -16,9 +16,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 
-		public async Task<Incursion[]> GetIncursionsAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Incursion[]> GetIncursionsAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Incursion[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);

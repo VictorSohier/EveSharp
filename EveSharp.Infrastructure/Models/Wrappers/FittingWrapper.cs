@@ -18,9 +18,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<Fit[]> GetFitsAsync(int characterId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Fit[]> GetFitsAsync(int characterId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"{characterId}/fittings?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/fittings?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Fit[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -28,18 +28,18 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task AddFittingAsync(int characterId, Fit fitting, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task AddFittingAsync(int characterId, Fit fitting, DataSources datasource = DataSources.tranquility)
 		{
 			StringWriter sw = new();
 			_serializer.Serialize(sw, fitting);
-			HttpResponseMessage message= await _client.PostAsync($"{characterId}/fittings?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", new StringContent(sw.ToString()));
+			HttpResponseMessage message= await _client.PostAsync($"{characterId}/fittings?datasource={Enum.GetName(datasource)?.ToLower()}", new StringContent(sw.ToString()));
 			if (message.StatusCode != HttpStatusCode.OK)
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
-		public async Task DeleteFittingAsync(int characterId, int fittingId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task DeleteFittingAsync(int characterId, int fittingId, DataSources datasource = DataSources.tranquility)
 		{
-			await _client.DeleteAsync($"{characterId}/fittings/{fittingId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			await _client.DeleteAsync($"{characterId}/fittings/{fittingId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 		}
 	}
 }

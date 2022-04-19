@@ -1,5 +1,5 @@
 using System.Net;
-using EveSharp.Infrastructure.Models;
+using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -10,6 +10,7 @@ namespace EveSharp.Infrastructure.Models
 		public readonly static WrapperConfig _instance = new();
 		public readonly string API_VERSION = "latest";
 		public readonly string DOMAIN = "https://esi.evetech.net";
+		public readonly string OAUTH2_DOMAIN = "login.eveonline.com";
 		public readonly JsonSerializer SERIALIZER = JsonSerializer.Create(
 			new()
 			{
@@ -35,6 +36,8 @@ namespace EveSharp.Infrastructure.Models
 			HttpStatusCode.AlreadyReported,
 			HttpStatusCode.IMUsed
 		};
+		public readonly Random RANDOM = new();
+		public readonly SHA256 SHA256 = SHA256.Create();
 		
 		private WrapperConfig()
 		{

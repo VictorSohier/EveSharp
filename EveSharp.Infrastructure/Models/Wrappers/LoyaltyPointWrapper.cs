@@ -21,12 +21,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<LoyaltyPointCount[]> GetLoyaltyPointsAsync(int characterId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<LoyaltyPointCount[]> GetLoyaltyPointsAsync(int characterId, DataSources datasource = DataSources.tranquility)
 		{
 			LoyaltyPointCount[] ret;
 			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
 			{
-				HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/loyalty/points?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+				HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/loyalty/points?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<LoyaltyPointCount[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
@@ -38,9 +38,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 
-		public async Task<LoyaltyPointStore[]> GetFacilitiesAsync(int corporationId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<LoyaltyPointStore[]> GetFacilitiesAsync(int corporationId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"loyalty/stores/{corporationId}/offers?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"loyalty/stores/{corporationId}/offers?datasource={Enum.GetName(datasource)?.ToLower()}");
 			LoyaltyPointStore[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);

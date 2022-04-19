@@ -24,12 +24,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<Record> GetCharacterStatsAsync(int characterId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Record> GetCharacterStatsAsync(int characterId, DataSources datasource = DataSources.tranquility)
 		{
 			Record ret;
 			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
 			{
-				HttpResponseMessage message = await _client.GetAsync($"character/{characterId}/fw/stats?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+				HttpResponseMessage message = await _client.GetAsync($"character/{characterId}/fw/stats?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Record>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
@@ -41,12 +41,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Record> GetCorporationStatsAsync(int corporationId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Record> GetCorporationStatsAsync(int corporationId, DataSources datasource = DataSources.tranquility)
 		{
 			Record ret;
 			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
 			{
-				HttpResponseMessage message = await _client.GetAsync($"corporation/{corporationId}/fw/stats?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+				HttpResponseMessage message = await _client.GetAsync($"corporation/{corporationId}/fw/stats?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Record>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
@@ -58,9 +58,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Leaderboard> GetLeaderboardAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Leaderboard> GetLeaderboardAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fw/leaderboards?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fw/leaderboards?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Leaderboard ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -68,9 +68,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Leaderboard> GetCharacterLeaderboardAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Leaderboard> GetCharacterLeaderboardAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fw/leaderboards/characters?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fw/leaderboards/characters?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Leaderboard ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -78,9 +78,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Leaderboard> GetCorporationLeaderboardAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Leaderboard> GetCorporationLeaderboardAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fw/leaderboards/corporations?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fw/leaderboards/corporations?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Leaderboard ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -88,9 +88,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Aggregate[]> GetAggregateStatisticsAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Aggregate[]> GetAggregateStatisticsAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fw/stats?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fw/stats?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Aggregate[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -98,9 +98,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<EveSharp.Core.Models.FactionWarfare.System[]> GetLastKnownSystemsStateAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<EveSharp.Core.Models.FactionWarfare.System[]> GetLastKnownSystemsStateAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fw/systems?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fw/systems?datasource={Enum.GetName(datasource)?.ToLower()}");
 			EveSharp.Core.Models.FactionWarfare.System[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -108,9 +108,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<War[]> GetWarsAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<War[]> GetWarsAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fw/wars?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fw/wars?datasource={Enum.GetName(datasource)?.ToLower()}");
 			War[] ret = _serializer.Deserialize<War[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}

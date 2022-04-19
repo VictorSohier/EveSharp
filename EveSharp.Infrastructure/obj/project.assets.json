@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Ardalis.SmartEnum/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Ardalis.SmartEnum.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ardalis.SmartEnum.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -27,6 +36,20 @@
     }
   },
   "libraries": {
+    "Ardalis.SmartEnum/2.1.0": {
+      "sha512": "RY3BulzPKbcwGhsY/gYkn8sPQtbipF6XheDHbW/TSVUtyFJ/FKTnY2Tx+34WLL5+e/9UnSQcGd3dOqpdN1QzKA==",
+      "type": "package",
+      "path": "ardalis.smartenum/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ardalis.smartenum.2.1.0.nupkg.sha512",
+        "ardalis.smartenum.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Ardalis.SmartEnum.dll",
+        "lib/netstandard2.0/Ardalis.SmartEnum.xml"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -62,6 +85,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Ardalis.SmartEnum >= 2.1.0",
       "EveSharp.Core >= 1.0.0",
       "Newtonsoft.Json >= 13.0.1"
     ]
@@ -72,11 +96,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vsohier/Repos/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
+      "projectUniqueName": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
       "projectName": "EveSharp.Infrastructure",
-      "projectPath": "/home/vsohier/Repos/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
+      "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
       "packagesPath": "/home/vsohier/.nuget/packages/",
-      "outputPath": "/home/vsohier/Repos/EveSharp/EveSharp.Infrastructure/obj/",
+      "outputPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vsohier/.nuget/NuGet/NuGet.Config"
@@ -91,8 +115,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/vsohier/Repos/EveSharp/EveSharp.Core/EveSharp.Core.csproj": {
-              "projectPath": "/home/vsohier/Repos/EveSharp/EveSharp.Core/EveSharp.Core.csproj"
+            "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj": {
+              "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj"
             }
           }
         }
@@ -107,6 +131,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Ardalis.SmartEnum": {
+            "target": "Package",
+            "version": "[2.1.0, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
@@ -122,12 +150,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.2, 6.0.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/vsohier/.dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }

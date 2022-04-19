@@ -19,9 +19,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<Event[]> GetEventsAsync(int characterId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Event[]> GetEventsAsync(int characterId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"{characterId}/calendar?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/calendar?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Event[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -29,9 +29,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<EventDetails> GetEventDetailsAsync(int characterId, int eventId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<EventDetails> GetEventDetailsAsync(int characterId, int eventId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"{characterId}/calendar/{eventId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/calendar/{eventId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			EventDetails ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -39,20 +39,20 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task PutEventResponseAsync(int characterId, int eventId, Response response, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task PutEventResponseAsync(int characterId, int eventId, Response response, DataSources datasource = DataSources.tranquility)
 		{
 			await _client
 				.PutAsync(
-					$"{characterId}/calendar/{eventId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}",
+					$"{characterId}/calendar/{eventId}?datasource={Enum.GetName(datasource)?.ToLower()}",
 					new StringContent($"{{ \"response\": \"{Enum.GetName(response)?.ToLower()}\" }}",
 						encoding: Encoding.UTF8,
 						mediaType: "application/json")
 				);
 		}
 		
-		public async Task<AttendeeResponse[]> GetEventResponsesAsync(int characterId, int eventId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<AttendeeResponse[]> GetEventResponsesAsync(int characterId, int eventId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"{characterId}/calendar/{eventId}/attendees?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/calendar/{eventId}/attendees?datasource={Enum.GetName(datasource)?.ToLower()}");
 			AttendeeResponse[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);

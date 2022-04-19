@@ -17,9 +17,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<Bookmark[]> GetCharacterBookmarksAsync(int characterId, int page = 1, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Bookmark[]> GetCharacterBookmarksAsync(int characterId, int page = 1, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/bookmarks?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}&page={page}");
+			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/bookmarks?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
 			Bookmark[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -27,9 +27,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Folder[]> GetCharacterBookmarkFoldersAsync(int characterId, int page = 1, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Folder[]> GetCharacterBookmarkFoldersAsync(int characterId, int page = 1, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/bookmarks/folders?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}&page={page}");
+			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/bookmarks/folders?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
 			Folder[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -37,9 +37,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Bookmark[]> GetCorporationBookmarksAsync(int corporationId, int page = 1, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Bookmark[]> GetCorporationBookmarksAsync(int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"characters/{corporationId}/bookmarks?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}&page={page}");
+			HttpResponseMessage message = await _client.GetAsync($"characters/{corporationId}/bookmarks?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
 			Bookmark[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -47,9 +47,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Folder[]> GetCorporationBookmarkFoldersAsync(int corporationId, int page = 1, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Folder[]> GetCorporationBookmarkFoldersAsync(int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"characters/{corporationId}/bookmarks/folders?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}&page={page}");
+			HttpResponseMessage message = await _client.GetAsync($"characters/{corporationId}/bookmarks/folders?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
 			Folder[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);

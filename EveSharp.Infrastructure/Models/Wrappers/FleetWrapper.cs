@@ -20,9 +20,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<Fleet> GetCurrentFleetAsync(int characterId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Fleet> GetCurrentFleetAsync(int characterId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/fleet?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/fleet?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Fleet ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -30,9 +30,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<FleetDetails> GetFleetAsync(long fleetId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<FleetDetails> GetFleetAsync(long fleetId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fleets/{fleetId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fleets/{fleetId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			FleetDetails ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -40,16 +40,16 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task PutFleetUpdateAsync(long fleetId, FleetUpdate fleetSettings, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task PutFleetUpdateAsync(long fleetId, FleetUpdate fleetSettings, DataSources datasource = DataSources.tranquility)
 		{
 			StringWriter sw = new();
 			_serializer.Serialize(sw, fleetSettings);
-			await _client.PutAsync($"/fleets/{fleetId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", new StringContent(sw.ToString(), Encoding.UTF8, "application/json"));
+			await _client.PutAsync($"/fleets/{fleetId}?datasource={Enum.GetName(datasource)?.ToLower()}", new StringContent(sw.ToString(), Encoding.UTF8, "application/json"));
 		}
 		
-		public async Task<FleetMember[]> GetFleetMembersAsync(long fleetId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<FleetMember[]> GetFleetMembersAsync(long fleetId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fleets/{fleetId}/members?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fleets/{fleetId}/members?datasource={Enum.GetName(datasource)?.ToLower()}");
 			FleetMember[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -57,31 +57,31 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task RemoveFleetMemberAsync(long fleetId, int characterId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task RemoveFleetMemberAsync(long fleetId, int characterId, DataSources datasource = DataSources.tranquility)
 		{
-			await _client.DeleteAsync($"/fleets/{fleetId}/members/{characterId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			await _client.DeleteAsync($"/fleets/{fleetId}/members/{characterId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 		}
 		
-		public async Task MoveFleetMemberAsync(long fleetId, int characterId, FleetMemberUpdate fleetMemberUpdate, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task MoveFleetMemberAsync(long fleetId, int characterId, FleetMemberUpdate fleetMemberUpdate, DataSources datasource = DataSources.tranquility)
 		{
 			StringWriter sw = new();
 			_serializer.Serialize(sw, fleetMemberUpdate);
-			await _client.PutAsync($"/fleets/{fleetId}/members/{characterId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", new StringContent(sw.ToString(), Encoding.UTF8, "application/json"));
+			await _client.PutAsync($"/fleets/{fleetId}/members/{characterId}?datasource={Enum.GetName(datasource)?.ToLower()}", new StringContent(sw.ToString(), Encoding.UTF8, "application/json"));
 		}
 		
-		public async Task RemoveSquadAsync(long fleetId, long squadId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task RemoveSquadAsync(long fleetId, long squadId, DataSources datasource = DataSources.tranquility)
 		{
-			await _client.DeleteAsync($"/fleets/{fleetId}/squads/{squadId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			await _client.DeleteAsync($"/fleets/{fleetId}/squads/{squadId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 		}
 		
-		public async Task UpdateSquadAsync(long fleetId, long squadId, string name, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task UpdateSquadAsync(long fleetId, long squadId, string name, DataSources datasource = DataSources.tranquility)
 		{
-			await _client.PutAsync($"/fleets/{fleetId}/squads/{squadId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", new StringContent($"{{ name: {name} }}", Encoding.UTF8, "application/json"));
+			await _client.PutAsync($"/fleets/{fleetId}/squads/{squadId}?datasource={Enum.GetName(datasource)?.ToLower()}", new StringContent($"{{ name: {name} }}", Encoding.UTF8, "application/json"));
 		}
 		
-		public async Task<Wing[]> GetWingsAsync(long fleetId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Wing[]> GetWingsAsync(long fleetId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"fleets/{fleetId}/wings?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"fleets/{fleetId}/wings?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Wing[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -89,9 +89,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<long> CreateNewWingAsync(long fleetId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<long> CreateNewWingAsync(long fleetId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"fleets/{fleetId}/wings?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", null);
+			HttpResponseMessage message = await _client.PostAsync($"fleets/{fleetId}/wings?datasource={Enum.GetName(datasource)?.ToLower()}", null);
 			long ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -99,19 +99,19 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task RemoveWingAsync(long fleetId, long wingId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task RemoveWingAsync(long fleetId, long wingId, DataSources datasource = DataSources.tranquility)
 		{
-			await _client.DeleteAsync($"/fleets/{fleetId}/wings/{wingId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			await _client.DeleteAsync($"/fleets/{fleetId}/wings/{wingId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 		}
 		
-		public async Task UpdateWingAsync(long fleetId, long wingId, string name, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task UpdateWingAsync(long fleetId, long wingId, string name, DataSources datasource = DataSources.tranquility)
 		{
-			await _client.PutAsync($"/fleets/{fleetId}/wings/{wingId}?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", new StringContent($"{{ name: {name} }}", Encoding.UTF8, "application/json"));
+			await _client.PutAsync($"/fleets/{fleetId}/wings/{wingId}?datasource={Enum.GetName(datasource)?.ToLower()}", new StringContent($"{{ name: {name} }}", Encoding.UTF8, "application/json"));
 		}
 		
-		public async Task<long> CreateNewSquadAsync(long fleetId, long wingId, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<long> CreateNewSquadAsync(long fleetId, long wingId, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"fleets/{fleetId}/wings/{wingId}/squads?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", null);
+			HttpResponseMessage message = await _client.PostAsync($"fleets/{fleetId}/wings/{wingId}/squads?datasource={Enum.GetName(datasource)?.ToLower()}", null);
 			long ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);

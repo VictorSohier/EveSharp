@@ -18,9 +18,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<Asset[]> GetCharacterAssetsAsync(int characterId, int page = 1, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Asset[]> GetCharacterAssetsAsync(int characterId, int page = 1, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/assets?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}&page={page}");
+			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/assets?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
 			Asset[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -28,9 +28,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Location[]> GetCharacterAssetLocationsAsync(int characterId, DataSources datasource = DataSources.TRANQUILITY, params long[] itemIds)
+		public async Task<Location[]> GetCharacterAssetLocationsAsync(int characterId, DataSources datasource = DataSources.tranquility, params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/locations?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", JsonContent.Create(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/locations?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(itemIds));
 			Location[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -38,9 +38,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<AssetName[]> GetCharacterAssetNamesAsync(int characterId, DataSources datasource = DataSources.TRANQUILITY, params long[] itemIds)
+		public async Task<AssetName[]> GetCharacterAssetNamesAsync(int characterId, DataSources datasource = DataSources.tranquility, params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/names?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", JsonContent.Create(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/assets/names?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(itemIds));
 			AssetName[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -48,9 +48,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Asset[]> GetCorporationAssetsAsync(int corporationId, int page = 1, DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<Asset[]> GetCorporationAssetsAsync(int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"corporation/{corporationId}/assets?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}&page={page}");
+			HttpResponseMessage message = await _client.GetAsync($"corporation/{corporationId}/assets?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
 			Asset[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -58,9 +58,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<Location[]> GetCorporationAssetLocationsAsync(int corporationId, DataSources datasource = DataSources.TRANQUILITY, params long[] itemIds)
+		public async Task<Location[]> GetCorporationAssetLocationsAsync(int corporationId, DataSources datasource = DataSources.tranquility, params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/locations?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", JsonContent.Create(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/locations?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(itemIds));
 			Location[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -68,9 +68,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<AssetName[]> GetCorporationAssetNamesAsync(int corporationId, DataSources datasource = DataSources.TRANQUILITY, params long[] itemIds)
+		public async Task<AssetName[]> GetCorporationAssetNamesAsync(int corporationId, DataSources datasource = DataSources.tranquility, params long[] itemIds)
 		{
-			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/names?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}", JsonContent.Create(itemIds));
+			HttpResponseMessage message = await _client.PostAsync($"corporation/{corporationId}/assets/names?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(itemIds));
 			AssetName[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);

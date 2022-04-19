@@ -17,9 +17,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 
-		public async Task<CharacterLocation> GetLocationAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<CharacterLocation> GetLocationAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"location?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"location?datasource={Enum.GetName(datasource)?.ToLower()}");
 			CharacterLocation ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -27,9 +27,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 
-		public async Task<CharacterLoginEntry> GetOnlineStatusAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<CharacterLoginEntry> GetOnlineStatusAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"online?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"online?datasource={Enum.GetName(datasource)?.ToLower()}");
 			CharacterLoginEntry ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
@@ -37,9 +37,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 
-		public async Task<CharacterShip> GetShipAsync(DataSources datasource = DataSources.TRANQUILITY)
+		public async Task<CharacterShip> GetShipAsync(DataSources datasource = DataSources.tranquility)
 		{
-			HttpResponseMessage message = await _client.GetAsync($"ship?datasource={Enum.GetName<DataSources>(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"ship?datasource={Enum.GetName(datasource)?.ToLower()}");
 			CharacterShip ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
