@@ -1,6 +1,6 @@
 namespace EveSharp.Infrastructure.Models
 {
-	public struct OAuth2Tokens
+	public struct OAuth2Token
 	{
 		public string accessToken;
 		public int expiresIn;

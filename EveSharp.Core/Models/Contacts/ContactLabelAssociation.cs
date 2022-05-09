@@ -1,11 +1,17 @@
 namespace EveSharp.Core.Models.Contacts
 {
-	public struct BulkContactLabelAssociations
+	public struct ContactLabelAssociation
+	{
+		public long labelId;
+		public int contactId;
+	}
+	
+	public struct SoAContactLabelAssociation
 	{
 		public long[] labelIds;
 		public int[] contactIds;
 		
-		public BulkContactLabelAssociations(params ContactLabelAssociation[] data)
+		public SoAContactLabelAssociation(params ContactLabelAssociation[] data)
 		{
 			labelIds = new long[data.Length];
 			contactIds = new int[data.Length];
@@ -16,11 +22,5 @@ namespace EveSharp.Core.Models.Contacts
 				contactIds[i] = data[i].contactId;
 			}
 		}
-	}
-	
-	public struct ContactLabelAssociation
-	{
-		public long labelId;
-		public int contactId;
 	}
 }

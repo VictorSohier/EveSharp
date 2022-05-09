@@ -64,7 +64,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<int[]> BulkSetCharacterContacts(int characterId, float standing, BulkContactLabelAssociations newContacts, bool watched = false, DataSources datasource = DataSources.tranquility)
+		public async Task<int[]> BulkSetCharacterContacts(int characterId, float standing, SoAContactLabelAssociation newContacts, bool watched = false, DataSources datasource = DataSources.tranquility)
 		{
 			string payload = string.Join(",", newContacts.labelIds);
 			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}$label_ids={payload}&watched={watched}", JsonContent.Create(newContacts.contactIds));
@@ -85,7 +85,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<int[]> BulkUpdateCharacterContacts(int characterId, float standing, BulkContactLabelAssociations newContacts, bool watched = false, DataSources datasource = DataSources.tranquility)
+		public async Task<int[]> BulkUpdateCharacterContacts(int characterId, float standing, SoAContactLabelAssociation newContacts, bool watched = false, DataSources datasource = DataSources.tranquility)
 		{
 			string payload = string.Join(",", newContacts.labelIds);
 			HttpResponseMessage message = await _client.PutAsync($"characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}$label_ids={payload}&watched={watched}", JsonContent.Create(newContacts.contactIds));
