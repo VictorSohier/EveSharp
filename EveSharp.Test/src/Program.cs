@@ -33,9 +33,13 @@ namespace EveSharp.Test
 			else
 				token = tmp.Value;
 			(jwks, bool isValid) = await OAuth2Wrapper._instance.VerifyToken(token);
-			AssetWrapperTests assetWrapperTests = new(token, jwks);
+			AllianceWrapperTests allianceWrapperTests = new();
+			AssetWrapperTests assetWrapperTests = new(ref token, ref jwks);
+			BookmarkWrapperTests bookmarkWrapperTests = new(ref token, ref jwks);
 			
+			await allianceWrapperTests.Run();
 			await assetWrapperTests.Run();
+			await bookmarkWrapperTests.Run();
 		}
 	}
 }
