@@ -21,9 +21,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.GetAsync($"?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Incursion[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<Incursion[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{
+				ret = _serializer.Deserialize<Incursion[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 	}
 }

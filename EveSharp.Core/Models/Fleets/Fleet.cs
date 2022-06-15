@@ -8,6 +8,7 @@ namespace EveSharp.Core.Models.Fleets
 		public Role role;
 		public long squadId;
 		public long wingId;
+		public long fleetBossId;
 	}
 	
 	public struct SoAFleet
@@ -16,6 +17,7 @@ namespace EveSharp.Core.Models.Fleets
 		public readonly Role[] roles;
 		public readonly long[] squadIds;
 		public readonly long[] wingIds;
+		public readonly long[] fleetBossIds;
 		
 		public SoAFleet(params Fleet[] fleets)
 		{
@@ -24,6 +26,7 @@ namespace EveSharp.Core.Models.Fleets
 			roles = new Role[count];
 			squadIds = new long[count];
 			wingIds = new long[count];
+			fleetBossIds = new long[count];
 			
 			for (int i = 0; i < count; i++)
 			{
@@ -31,6 +34,7 @@ namespace EveSharp.Core.Models.Fleets
 				roles[i] = fleets[i].role;
 				squadIds[i] = fleets[i].squadId;
 				wingIds[i] = fleets[i].wingId;
+				fleetBossIds[i] = fleets[i].fleetBossId;
 			}
 		}
 	}

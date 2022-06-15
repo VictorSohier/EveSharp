@@ -13,11 +13,6 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		private readonly HttpClient _client;
 		private readonly JsonSerializer _serializer;
 		
-		public CharacterWrapper(string authToken) : this()
-		{
-			_client.DefaultRequestHeaders.Add("authorization", authToken);
-		}
-		
 		public CharacterWrapper()
 		{
 			_client = new();
@@ -30,42 +25,34 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.GetAsync($"{characterId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Character ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<Character>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{
+				ret = _serializer.Deserialize<Character>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
-		public async Task<AgentsResearch[]> GetAgentsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<AgentsResearch[]> GetAgentsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			AgentsResearch[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/agents_research?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/agents_research?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<AgentsResearch[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Blueprint[]> GetBlueprintsAsync(int characterId, int page = 1, DataSources datasource = DataSources.tranquility)
+		public async Task<Blueprint[]> GetBlueprintsAsync(OAuth2Token token, int characterId, int page = 1, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Blueprint[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/blueprints?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/blueprints?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 			ret = _serializer.Deserialize<Blueprint[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
@@ -76,88 +63,63 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<float> GetCPSAAsync(int characterId, DataSources datasource = DataSources.tranquility, params int[] recipientIds)
+		public async Task<float> GetCPSAAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility, params int[] recipientIds)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			float ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.PostAsync($"{characterId}/cspa?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(recipientIds));
+			HttpResponseMessage message = await _client.PostAsync($"{characterId}/cspa?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(recipientIds));
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<float>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<JumpFatigue> GetJumpFatigueAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<JumpFatigue> GetJumpFatigueAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			JumpFatigue ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/fatigue?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/fatigue?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<JumpFatigue>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Medal[]> GetMedalsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<Medal[]> GetMedalsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Medal[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/medals?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/medals?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Medal[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Notification[]> GetNotificationsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<Notification[]> GetNotificationsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Notification[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/notifications?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/notifications?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Notification[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<NotificationContact[]> GetContactNotificationsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<NotificationContact[]> GetContactNotificationsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			NotificationContact[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/roles?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/roles?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<NotificationContact[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
@@ -166,161 +128,116 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.GetAsync($"{characterId}/portrait?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Icon ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<Icon>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{
+				ret = _serializer.Deserialize<Icon>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
-		public async Task<CharacterRoles> GetRolesAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<CharacterRoles> GetRolesAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			CharacterRoles ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/portrait?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/portrait?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<CharacterRoles>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<StandingEntry[]> GetStandingsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<StandingEntry[]> GetStandingsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			StandingEntry[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/standingss?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/standingss?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<StandingEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Title[]> GetTitlesAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<Title[]> GetTitlesAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Title[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/titles?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/titles?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Title[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Affiliation[]> BulkAffiliationLookupAsync(DataSources datasource = DataSources.tranquility, params int[] characterIds)
+		public async Task<Affiliation[]> BulkAffiliationLookupAsync(OAuth2Token token, DataSources datasource = DataSources.tranquility, params int[] characterIds)
 		{
 			Affiliation[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.PostAsync($"affiliation?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(characterIds));
+			HttpResponseMessage message = await _client.PostAsync($"affiliation?datasource={Enum.GetName(datasource)?.ToLower()}", JsonContent.Create(characterIds));
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Affiliation[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Clone> GetClonesAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<Clone> GetClonesAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Clone ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/clones?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/clones?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Clone>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<int[]> GetCurrentCloneImplantsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<int[]> GetCurrentCloneImplantsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			int[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/implants?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/implants?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<int[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Attributes> GetCurrentCloneAttributesAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<Attributes> GetCurrentCloneAttributesAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Attributes ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/attributes?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/attributes?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Attributes>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<QueuedSkill[]> GetSkillQueueAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<QueuedSkill[]> GetSkillQueueAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			QueuedSkill[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/skillqueue?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/skillqueue?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<QueuedSkill[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 		
-		public async Task<Skills> GetSkillsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<Skills> GetSkillsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Skills ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"{characterId}/skills?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"{characterId}/skills?datasource={Enum.GetName(datasource)?.ToLower()}");
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 				ret = _serializer.Deserialize<Skills>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
 			return ret;
 		}
 	}

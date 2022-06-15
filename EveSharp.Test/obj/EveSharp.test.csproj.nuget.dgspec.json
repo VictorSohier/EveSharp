@@ -1,0 +1,215 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.test/EveSharp.test.csproj": {}
+  },
+  "projects": {
+    "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj",
+        "projectName": "EveSharp.Core",
+        "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj",
+        "packagesPath": "/home/vsohier/.nuget/packages/",
+        "outputPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/vsohier/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.2, 6.0.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
+        "projectName": "EveSharp.Infrastructure",
+        "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
+        "packagesPath": "/home/vsohier/.nuget/packages/",
+        "outputPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/vsohier/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj": {
+                "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Ardalis.SmartEnum": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.2, 6.0.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.test/EveSharp.test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.test/EveSharp.test.csproj",
+        "projectName": "EveSharp.test",
+        "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.test/EveSharp.test.csproj",
+        "packagesPath": "/home/vsohier/.nuget/packages/",
+        "outputPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.test/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/vsohier/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj": {
+                "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Core/EveSharp.Core.csproj"
+              },
+              "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj": {
+                "projectPath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Ardalis.SmartEnum": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.2, 6.0.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

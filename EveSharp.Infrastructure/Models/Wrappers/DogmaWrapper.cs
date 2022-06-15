@@ -29,9 +29,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.GetAsync($"attributes/{attributeId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			DogmaAttribute ret;
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			{
 				ret = _serializer.Deserialize<DogmaAttribute>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Item> GetDynamicItemInstanceAsync(int typeId, int instanceId, DataSources datasource = DataSources.tranquility)
@@ -39,9 +41,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.GetAsync($"dynamic/items/{typeId}/{instanceId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Item ret;
 				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			{
 				ret = _serializer.Deserialize<Item>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<int[]> GetEffectIdsAsync(DataSources datasource = DataSources.tranquility)

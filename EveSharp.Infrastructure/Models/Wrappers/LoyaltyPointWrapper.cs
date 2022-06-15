@@ -9,11 +9,6 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		private readonly HttpClient _client;
 		private readonly JsonSerializer _serializer;
 		
-		public LoyaltyPointWrapper(string authToken) : this()
-		{
-			_client.DefaultRequestHeaders.Add("authorization", authToken);
-		}
-		
 		public LoyaltyPointWrapper()
 		{
 			_client = new();
@@ -21,20 +16,16 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_serializer = WrapperConfig._instance.SERIALIZER;
 		}
 		
-		public async Task<LoyaltyPointCount[]> GetLoyaltyPointsAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<LoyaltyPointCount[]> GetLoyaltyPointsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
 		{
+			_client.DefaultRequestHeaders.Remove("Authorization");
+			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			LoyaltyPointCount[] ret;
-			if (_client.DefaultRequestHeaders.Any(e => e.Key == "authorization" & e.Value.Any(f => !string.IsNullOrWhiteSpace(f))))
-			{
-				HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/loyalty/points?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-				ret = _serializer.Deserialize<LoyaltyPointCount[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			}
-			else
-			{
-				throw new Exception("No Authorization Token, this endpoint will fail.");
-			}
+			
+			HttpResponseMessage message = await _client.GetAsync($"characters/{characterId}/loyalty/points?datasource={Enum.GetName(datasource)?.ToLower()}");
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			ret = _serializer.Deserialize<LoyaltyPointCount[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
 
@@ -43,9 +34,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.GetAsync($"loyalty/stores/{corporationId}/offers?datasource={Enum.GetName(datasource)?.ToLower()}");
 			LoyaltyPointStore[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<LoyaltyPointStore[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{
+				ret = _serializer.Deserialize<LoyaltyPointStore[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 	}
 }
