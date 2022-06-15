@@ -1,6 +1,6 @@
 namespace EveSharp.Infrastructure.Models
 {
-	public struct Error
+	internal struct Error
 	{
 		public string error;
 	}

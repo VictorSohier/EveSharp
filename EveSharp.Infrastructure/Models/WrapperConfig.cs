@@ -7,11 +7,11 @@ namespace EveSharp.Infrastructure.Models
 {
 	internal class WrapperConfig
 	{
-		public readonly static WrapperConfig _instance = new();
-		public readonly string API_VERSION = "latest";
-		public readonly string DOMAIN = "https://esi.evetech.net";
-		public readonly string OAUTH2_DOMAIN = "login.eveonline.com";
-		public readonly JsonSerializer SERIALIZER = JsonSerializer.Create(
+		internal readonly static WrapperConfig _instance = new();
+		internal readonly string API_VERSION = "latest";
+		internal readonly string DOMAIN = "https://esi.evetech.net";
+		internal readonly string OAUTH2_DOMAIN = "login.eveonline.com";
+		internal readonly JsonSerializer SERIALIZER = JsonSerializer.Create(
 			new()
 			{
 				DateParseHandling = DateParseHandling.DateTime,
@@ -20,11 +20,12 @@ namespace EveSharp.Infrastructure.Models
 				{
 					NamingStrategy = new SnakeCaseNamingStrategy()
 				},
-				NullValueHandling = NullValueHandling.Include
+				NullValueHandling = NullValueHandling.Include,
+				TypeNameHandling = TypeNameHandling.All
 			}
 		);
 		
-		public readonly HttpStatusCode[] SUCCESS = new HttpStatusCode[]{
+		internal readonly HttpStatusCode[] SUCCESS = new HttpStatusCode[]{
 			HttpStatusCode.OK,
 			HttpStatusCode.Created,
 			HttpStatusCode.Accepted,
@@ -36,8 +37,8 @@ namespace EveSharp.Infrastructure.Models
 			HttpStatusCode.AlreadyReported,
 			HttpStatusCode.IMUsed
 		};
-		public readonly Random RANDOM = new();
-		public readonly SHA256 SHA256 = SHA256.Create();
+		internal readonly Random RANDOM = new();
+		internal readonly SHA256 SHA256 = SHA256.Create();
 		
 		private WrapperConfig()
 		{
