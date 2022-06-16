@@ -23,12 +23,36 @@ namespace EveSharp.Test
 		{
 			int totalTests = 0;
 			int passedTests = 0;
+			bool getCharacterAssets = false;
+			bool getCharacterAssetLocations = false;
+			bool getCharacterAssetNames = false;
 			totalTests++;
-			bool getCharacterAssets = await CharacterAssetsTest();
+			try
+			{
+				getCharacterAssets = await CharacterAssetsTest();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
 			totalTests++;
-			bool getCharacterAssetLocations = await CharacterAssetLocationsTest();
+			try
+			{
+				getCharacterAssetLocations = await CharacterAssetLocationsTest();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
 			totalTests++;
-			bool getCharacterAssetNames = await CharacterAssetNamesTest();
+			try
+			{
+				getCharacterAssetNames = await CharacterAssetNamesTest();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
 			if (getCharacterAssets) passedTests++;
 			if (getCharacterAssetLocations) passedTests++;
 			if (getCharacterAssetNames) passedTests++;

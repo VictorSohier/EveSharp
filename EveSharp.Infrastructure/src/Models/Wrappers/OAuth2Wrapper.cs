@@ -57,21 +57,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 						.Split("?")[1]
 						.Split("&")
 						.First(e =>
-							e
-								.StartsWith("state")
-							)
-						.Split("=")[1];
-					string code = uri
-						.Split("?")[1]
-						.Split("&")
-						.First(e =>
-							e
-								.StartsWith("code")
-							)
+							e.StartsWith("state"))
 						.Split("=")[1];
 					NamedPipeClientStream pipeClient = new(".",
 						state, PipeDirection.Out, PipeOptions.None);
-					byte[] writeBuffer = Encoding.UTF8.GetBytes(code);
+					byte[] writeBuffer = Encoding.UTF8.GetBytes(uri);
 					await pipeClient.ConnectAsync();
 					await pipeClient.WriteAsync(writeBuffer);
 					await pipeClient.FlushAsync();
@@ -120,7 +110,13 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 					.Replace("/", "_")
 					.Replace("=", "");
 				string path = $"/v2/oauth/authorize?response_type=code&redirect_uri={callbackUri}&client_id={CLIENT_ID}&state={state}&code_challenge={challenge}&code_challenge_method=S256&scope={string.Join("%20", permissions.values)}";
-				Process browser = Process.Start("xdg-open", $"https://{WrapperConfig._instance.OAUTH2_DOMAIN}{path}");
+				string browserCall = Environment.OSVersion.Platform switch
+				{
+					PlatformID.Unix => "xdg-open",
+					PlatformID.Win32NT => "start",
+					_ => "",
+				};
+				Process browser = Process.Start(browserCall, $"https://{WrapperConfig._instance.OAUTH2_DOMAIN}{path}");
 				CancellationTokenSource cts = new();
 				browser.Disposed += (object sender, EventArgs e) => cts.Cancel(false);
 				byte[] bytes = new byte[4096];
@@ -137,7 +133,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 					bytes = new byte[4096];
 				}
 				while (bytesRead == bytes.Length);
-				code = response.Split("?")[1].Split("&").First(e => e.StartsWith("code")).Split("=")[1];
+				code = response
+						.Split("?")[1]
+						.Split("&")
+						.First(e => e.StartsWith("code"))
+						.Split("=")[1];
 				pipeServer.Close();
 				browser.Close();
 			}

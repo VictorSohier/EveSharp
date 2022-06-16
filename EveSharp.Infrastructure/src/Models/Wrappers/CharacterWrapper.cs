@@ -56,10 +56,10 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			return ret;
 		}
 		
-		public async Task<CorpHistoryEntry> GetCorporationHistoryAsync(int characterId, DataSources datasource = DataSources.tranquility)
+		public async Task<CorpHistoryEntry[]> GetCorporationHistoryAsync(int characterId, DataSources datasource = DataSources.tranquility)
 		{
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/corporationhistory?datasource={Enum.GetName(datasource)?.ToLower()}");
-			CorpHistoryEntry ret = _serializer.Deserialize<CorpHistoryEntry>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+			CorpHistoryEntry[] ret = _serializer.Deserialize<CorpHistoryEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
 		

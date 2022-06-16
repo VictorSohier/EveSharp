@@ -24,7 +24,6 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			Bookmark[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
-				string s = await message.Content.ReadAsStringAsync();
 				ret = _serializer.Deserialize<Bookmark[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 				return ret;
 			}
