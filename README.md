@@ -10,10 +10,13 @@ As far as I know, this is the first in C#
 
 ## Currently Being Worked on or Completed
 
+And probably in this order:
+
 - [x] Models
 - [x] OAuth2
 - [ ] Wrappers
 - [ ] Testing
+- [ ] Documentation
 
 ## Plans
 
