@@ -28,7 +28,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		{
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/dogma/attributes/{attributeId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			DogmaAttribute ret;
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
 				ret = _serializer.Deserialize<DogmaAttribute>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 				return ret;
@@ -40,7 +40,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		{
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/dogma/dynamic/items/{typeId}/{instanceId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Item ret;
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
 				ret = _serializer.Deserialize<Item>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 				return ret;
@@ -59,9 +59,9 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		{
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/dogma/effects/{effectId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			EveSharp.Core.Models.Dogma.Effect.Effect ret;
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-				ret = _serializer.Deserialize<EveSharp.Core.Models.Dogma.Effect.Effect>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			ret = _serializer.Deserialize<EveSharp.Core.Models.Dogma.Effect.Effect>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 			return ret;
 		}
 	}

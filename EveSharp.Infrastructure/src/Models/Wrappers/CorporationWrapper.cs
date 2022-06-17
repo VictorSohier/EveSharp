@@ -23,7 +23,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		{
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/{corporationId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Corporation ret;
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
 				ret = _serializer.Deserialize<Corporation>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 				return ret;
@@ -35,7 +35,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		{
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/{corporationId}/alliancehistory?datasource={Enum.GetName(datasource)?.ToLower()}");
 			AllianceHistoryEntry[] ret;
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
 				ret = _serializer.Deserialize<AllianceHistoryEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 				return ret;
@@ -49,10 +49,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Blueprint[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/blueprints?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Blueprint[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<ContainerLogEntry[]> GetContainerLogsAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -61,10 +63,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			ContainerLogEntry[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/containers/logs?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<ContainerLogEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		/// <summary>
@@ -105,17 +109,19 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Facility[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/facilities?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Facility[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Icon> GetIconsAsync(int corporationId, DataSources datasource = DataSources.tranquility)
 		{
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/{corporationId}/icons?datasource={Enum.GetName(datasource)?.ToLower()}");
 			Icon ret;
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
 				ret = _serializer.Deserialize<Icon>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
 				return ret;
@@ -129,10 +135,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Medal[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/medals?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Medal[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<IssuedMedal[]> GetIssuedMedalsAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -141,10 +149,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			IssuedMedal[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/medals/issued?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<IssuedMedal[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<int[]> GetMembersAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -153,10 +163,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			int[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/members?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<int[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<int> GetMemberLimitAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -165,10 +177,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			int ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/members/limit?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<int>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<IssuedTitle[]> GetIssuedTitlesAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -177,10 +191,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			IssuedTitle[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/members/titles?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<IssuedTitle[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<MemberTrackingEntry[]> GetLastKnownMemberStatesAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -189,10 +205,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			MemberTrackingEntry[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/memberstracking?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<MemberTrackingEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<CorporationRole[]> GetIssuedRolesAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -201,10 +219,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			CorporationRole[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/roles?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<CorporationRole[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<CharacterRolesHistory[]> GetCorporationRoleHistoryAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -213,10 +233,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			CharacterRolesHistory[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/roles/history?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<CharacterRolesHistory[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Shareholder[]> GetShareholdersAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -225,10 +247,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Shareholder[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/shareholders?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Shareholder[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<StandingEntry[]> GetStandingsAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -237,10 +261,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			StandingEntry[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/standings?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<StandingEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Starbase[]> GetStarbasesAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -249,10 +275,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Starbase[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/starbases?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Starbase[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<StarbaseDetails> GetStarbaseDetailsAsync(OAuth2Token token, int corporationId, int starbaseId, DataSources datasource = DataSources.tranquility)
@@ -261,10 +289,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			StarbaseDetails ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/starbases/{starbaseId}?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<StarbaseDetails>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Structure[]> GetStructuresAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -273,10 +303,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Structure[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/structures?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Structure[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Title[]> GetTitlesAsync(OAuth2Token token, int corporationId, int page = 1, DataSources datasource = DataSources.tranquility)
@@ -285,10 +317,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Title[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/corporations/{corporationId}/titles?datasource={Enum.GetName(datasource)?.ToLower()}&page={page}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Title[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<int[]> GetNPCCorpsAsync(DataSources datasource = DataSources.tranquility)

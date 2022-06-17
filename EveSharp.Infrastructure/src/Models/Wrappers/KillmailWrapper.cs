@@ -28,9 +28,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			Killmail[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/killmails/recent?datasource={Enum.GetName(datasource)?.ToLower()}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<Killmail[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{	
+				ret = _serializer.Deserialize<Killmail[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Killmail[]> GetCorporationKillmailsAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -40,9 +42,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			Killmail[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporations/{corporationId}/killmails/recent?datasource={Enum.GetName(datasource)?.ToLower()}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<Killmail[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{	
+				ret = _serializer.Deserialize<Killmail[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 
 		public async Task<KillmailDetails> GetKillmailDetailsAsync(Killmail killmail, DataSources datasource = DataSources.tranquility)

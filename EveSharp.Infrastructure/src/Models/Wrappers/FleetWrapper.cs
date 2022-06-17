@@ -121,9 +121,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.PostAsync($"fleets/{fleetId}/wings?datasource={Enum.GetName(datasource)?.ToLower()}", null);
 			long ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = JToken.Parse(await message.Content.ReadAsStringAsync())["wing_id"].Value<long>();
-			return ret;
+			{
+				ret = JToken.Parse(await message.Content.ReadAsStringAsync())["wing_id"].Value<long>();
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task RemoveWingAsync(OAuth2Token token, long fleetId, long wingId, DataSources datasource = DataSources.tranquility)
@@ -147,9 +149,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			HttpResponseMessage message = await _client.PostAsync($"fleets/{fleetId}/wings/{wingId}/squads?datasource={Enum.GetName(datasource)?.ToLower()}", null);
 			long ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = JToken.Parse(await message.Content.ReadAsStringAsync())["squad_id"].Value<long>();
-			return ret;
+			{
+				ret = JToken.Parse(await message.Content.ReadAsStringAsync())["squad_id"].Value<long>();
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 	}
 }

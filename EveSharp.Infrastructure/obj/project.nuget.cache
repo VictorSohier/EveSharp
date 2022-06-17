@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "pn9pGHQ+B6bQbrvw8Mj9BvLHLTEKL1hMrrR3PF0NcDqdKQmKxbbwXyZmj/zcAQruXMa+GLIlwRunm2110B4Uvg==",
+  "dgSpecHash": "DjEssecD+pqv5s4PdLkmq+ROEw8EkUekULRIRPjQHVUfluNfBarJOznv6uauDuwCoab/9XM24LFLPD+SwUpZbA==",
   "success": true,
   "projectFilePath": "/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Infrastructure/EveSharp.Infrastructure.csproj",
   "expectedPackageFiles": [
     "/home/vsohier/.nuget/packages/ardalis.smartenum/2.1.0/ardalis.smartenum.2.1.0.nupkg.sha512",
     "/home/vsohier/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/home/vsohier/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/home/vsohier/.nuget/packages/xamarin.essentials/1.7.3/xamarin.essentials.1.7.3.nupkg.sha512",
     "/home/vsohier/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.2/microsoft.aspnetcore.app.ref.6.0.2.nupkg.sha512"
   ],
   "logs": []

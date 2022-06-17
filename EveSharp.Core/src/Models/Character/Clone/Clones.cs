@@ -1,6 +1,6 @@
 namespace EveSharp.Core.Models.Character.Clone
 {
-	public struct Clone
+	public struct Clones
 	{
 		public DateTime lastCloneJumpDate;
 		public DateTime lastStationChangeDate;
@@ -8,14 +8,14 @@ namespace EveSharp.Core.Models.Character.Clone
 		public Location homeLocation;
 	}
 	
-	public struct SoAClone
+	public struct SoAClones
 	{
 		public readonly DateTime[] lastCloneJumpDates;
 		public readonly DateTime[] lastStationChangeDates;
 		public readonly SoAJumpClone[] jumpClones;
 		public readonly SoALocation homeLocations;
 		
-		public SoAClone(params Clone[] clones)
+		public SoAClones(params Clones[] clones)
 		{
 			int count = clones.Length;
 			lastCloneJumpDates = new DateTime[count];

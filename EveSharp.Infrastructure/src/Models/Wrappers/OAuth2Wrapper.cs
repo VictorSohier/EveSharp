@@ -2,8 +2,10 @@ using System.Diagnostics;
 using System.IO.Pipes;
 using System.Security.Cryptography;
 using System.Text;
+using EveSharp.Core.Models.Universe;
 using EveSharp.Infrastructure.Enums;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace EveSharp.Infrastructure.Models.Wrappers
 {
@@ -74,7 +76,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		
 		public async Task<OAuth2Token?> NativeProtocol (
 			string callbackUri,
-			params Permissions[] permissions
+			params Enums.Permissions[] permissions
 		) => await NativeProtocol(
 				callbackUri,
 				new PermissionsSOA(permissions));
@@ -110,15 +112,25 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 					.Replace("/", "_")
 					.Replace("=", "");
 				string path = $"/v2/oauth/authorize?response_type=code&redirect_uri={callbackUri}&client_id={CLIENT_ID}&state={state}&code_challenge={challenge}&code_challenge_method=S256&scope={string.Join("%20", permissions.values)}";
-				string browserCall = Environment.OSVersion.Platform switch
-				{
-					PlatformID.Unix => "xdg-open",
-					PlatformID.Win32NT => "start",
-					_ => "",
-				};
-				Process browser = Process.Start(browserCall, $"https://{WrapperConfig._instance.OAUTH2_DOMAIN}{path}");
+				string browserCall = "";
+				if (OperatingSystem.IsAndroid());
+				else if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
+					browserCall = "xdg-open";
+				else if (OperatingSystem.IsMacOS())
+					browserCall = "open";
+				else if (OperatingSystem.IsWindows())
+					browserCall = "start";
+				
+				Process browser = null;
 				CancellationTokenSource cts = new();
-				browser.Disposed += (object sender, EventArgs e) => cts.Cancel(false);
+				
+				if (OperatingSystem.IsAndroid() || OperatingSystem.IsAndroid())
+					await Browser.OpenAsync($"https://{WrapperConfig._instance.OAUTH2_DOMAIN}{path}", BrowserLaunchMode.SystemPreferred);
+				else
+				{
+					browser = Process.Start(browserCall, $"https://{WrapperConfig._instance.OAUTH2_DOMAIN}{path}");
+					browser.Disposed += (object sender, EventArgs e) => cts.Cancel(false);
+				}
 				byte[] bytes = new byte[4096];
 				NamedPipeServerStream pipeServer = new(state);
 				int bytesRead;
@@ -139,7 +151,8 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 						.First(e => e.StartsWith("code"))
 						.Split("=")[1];
 				pipeServer.Close();
-				browser.Close();
+				if (browser != null)
+					browser.Close();
 			}
 			
 			{
@@ -178,7 +191,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		public string GetWebRedirect (
 			string state,
 			string callbackUri,
-			params Permissions[] permissions
+			params Enums.Permissions[] permissions
 		) => GetWebRedirect (
 			state,
 			callbackUri,

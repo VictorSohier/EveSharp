@@ -10,25 +10,25 @@ namespace EveSharp.Core.Models.Character
 	
 	public struct SoAAffiliation
 	{
-		public readonly int?[] allianceId;
-		public readonly int[] characterId;
-		public readonly int[] corporationId;
-		public readonly int?[] factitonId;
+		public readonly int?[] allianceIds;
+		public readonly int[] characterIds;
+		public readonly int[] corporationIds;
+		public readonly int?[] factitonIds;
 		
 		public SoAAffiliation(params Affiliation[] affiliations)
 		{
 			int count = affiliations.Length;
-			allianceId = new int?[count];
-			characterId = new int[count];
-			corporationId = new int[count];
-			factitonId = new int?[count];
+			allianceIds = new int?[count];
+			characterIds = new int[count];
+			corporationIds = new int[count];
+			factitonIds = new int?[count];
 			
 			for (int i = 0; i < count; i++)
 			{
-				allianceId[i] = affiliations[i].allianceId;
-				characterId[i] = affiliations[i].characterId;
-				corporationId[i] = affiliations[i].corporationId;
-				factitonId[i] = affiliations[i].factitonId;
+				allianceIds[i] = affiliations[i].allianceId;
+				characterIds[i] = affiliations[i].characterId;
+				corporationIds[i] = affiliations[i].corporationId;
+				factitonIds[i] = affiliations[i].factitonId;
 			}
 		}
 	}

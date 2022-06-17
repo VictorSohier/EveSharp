@@ -20,3 +20,4 @@
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/obj/Debug/net6.0/ref/EveSharp.Test.dll
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/obj/Debug/net6.0/EveSharp.Test.pdb
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/obj/Debug/net6.0/EveSharp.Test.genruntimeconfig.cache
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/Xamarin.Essentials.dll

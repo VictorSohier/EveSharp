@@ -22,10 +22,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Job[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/industry/jobs?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Job[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<MiningEntry[]> GetMiningHistoryAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility)
@@ -35,9 +37,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			MiningEntry[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/mining?datasource={Enum.GetName(datasource)?.ToLower()}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<MiningEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{	
+				ret = _serializer.Deserialize<MiningEntry[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<MoonExtraction[]> GetMoonExtractionsAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -47,9 +51,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			MoonExtraction[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporation/{corporationId}/mining/extractions?datasource={Enum.GetName(datasource)?.ToLower()}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<MoonExtraction[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{	
+				ret = _serializer.Deserialize<MoonExtraction[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<MiningObserver[]> GetMiningObserversAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -59,9 +65,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			MiningObserver[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporation/{corporationId}/mining/observers?datasource={Enum.GetName(datasource)?.ToLower()}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<MiningObserver[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{	
+				ret = _serializer.Deserialize<MiningObserver[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<MiningObserverDetails> GetMiningObserverDetailsAsync(OAuth2Token token, int corporationId, long observerId, DataSources datasource = DataSources.tranquility)
@@ -83,9 +91,11 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			Job[] ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporation/{corporoationId}/industry/jobs?datasource={Enum.GetName(datasource)?.ToLower()}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
-			ret = _serializer.Deserialize<Job[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+			{	
+				ret = _serializer.Deserialize<Job[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 
 		public async Task<Facility[]> GetFacilitiesAsync(DataSources datasource = DataSources.tranquility)

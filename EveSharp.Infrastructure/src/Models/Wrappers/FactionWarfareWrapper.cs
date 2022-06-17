@@ -30,10 +30,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Record ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/character/{characterId}/fw/stats?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Record>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Record> GetCorporationStatsAsync(OAuth2Token token, int corporationId, DataSources datasource = DataSources.tranquility)
@@ -42,10 +44,12 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			Record ret;
 			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/corporation/{corporationId}/fw/stats?datasource={Enum.GetName(datasource)?.ToLower()}");
-				if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-					throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+			{
 				ret = _serializer.Deserialize<Record>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-			return ret;
+				return ret;
+			}
+			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<Leaderboard> GetLeaderboardAsync(DataSources datasource = DataSources.tranquility)
