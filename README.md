@@ -31,7 +31,7 @@ Submit a github issue, I'll figure something out regarding templates later.
 
 ## How
 
-There are probably people calling me a heretic for using structs instead of classes. Get over it, if you want to change it, fork it. This is public domain.
+There are probably people calling me a heretic for using structs instead of classes. Get over it, if you want to change it, fork it, I don't care.
 
 ## Support From the Developer
 
