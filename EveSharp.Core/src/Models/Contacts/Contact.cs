@@ -1,4 +1,5 @@
 using EveSharp.Core.Enums.Contacts;
+using Newtonsoft.Json;
 
 namespace EveSharp.Core.Models.Contacts
 {
@@ -6,10 +7,38 @@ namespace EveSharp.Core.Models.Contacts
 	{
 		public int contactId;
 		public ContactType contactType;
-		public long[] labelIds;
+		public long[] labelIds = new long[0];
 		public float standing;
 		public bool? isBlocked;
 		public bool? isWatched;
+		
+		public Contact()
+		{
+			contactId = 0;
+			contactType = ContactType.other;
+			labelIds = new long[0];
+			standing = 0;
+			isBlocked = false;
+			isWatched = false;
+		}
+		
+		[JsonConstructor]
+		public Contact(
+			int contactId,
+			ContactType contactType,
+			long[] labelIds,
+			float standing,
+			bool? isBlocked,
+			bool? isWatched
+		)
+		{
+			this.contactId = contactId;
+			this.contactType = contactType;
+			this.labelIds = labelIds ?? new long[0];
+			this.standing = standing;
+			this.isBlocked = isBlocked;
+			this.isWatched = isWatched;
+		}
 	}
 	
 	public struct SoAContact
@@ -40,7 +69,7 @@ namespace EveSharp.Core.Models.Contacts
 				standings[i] = contacts[i].standing;
 				isBlockeds[i] = contacts[i].isBlocked;
 				isWatcheds[i] = contacts[i].isWatched;
-				Array.Copy(contacts[i].labelIds, labelIds, labelIdsLength);
+				Array.Copy(contacts[i].labelIds, labelIds[i], labelIdsLength);
 			}
 		}
 	}

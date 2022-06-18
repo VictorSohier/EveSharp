@@ -38,12 +38,16 @@ namespace EveSharp.Test
 			BookmarkWrapperTests bookmarkWrapperTests = new(ref token, ref jwks);
 			CalendarWrapperTests calendarWrapperTests = new(ref token, ref jwks);
 			CharacterWrapperTests characterWrapperTests = new(ref token, ref jwks);
+			ContactWrapperTests contactWrapperTests = new(ref token, ref jwks);
+			ContractWrapperTests contractWrapperTests = new(ref token, ref jwks);
 			
 			await allianceWrapperTests.Run();
 			await assetWrapperTests.Run();
 			await bookmarkWrapperTests.Run();
 			await calendarWrapperTests.Run();
 			await characterWrapperTests.Run();
+			await contactWrapperTests.Run();
+			await contractWrapperTests.Run();
 		}
 	}
 }

@@ -73,7 +73,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		public async Task<Bid[]> GetPublicContractBidsAsync(int contractId, DataSources datasource = DataSources.tranquility)
 		{
 			Bid[] ret;
-			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}//contracts/public/bids/{contractId}?datasource={Enum.GetName(datasource)?.ToLower()}");
+			HttpResponseMessage message = await _client.GetAsync($"/{WrapperConfig._instance.API_VERSION}/contracts/public/bids/{contractId}?datasource={Enum.GetName(datasource)?.ToLower()}");
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
 				ret = _serializer.Deserialize<Bid[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));

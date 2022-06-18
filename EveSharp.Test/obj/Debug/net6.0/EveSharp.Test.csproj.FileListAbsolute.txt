@@ -6,6 +6,7 @@
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/EveSharp.Test.pdb
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/Ardalis.SmartEnum.dll
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/Xamarin.Essentials.dll
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/EveSharp.Core.dll
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/EveSharp.Infrastructure.dll
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/EveSharp.Core.pdb
@@ -20,4 +21,3 @@
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/obj/Debug/net6.0/ref/EveSharp.Test.dll
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/obj/Debug/net6.0/EveSharp.Test.pdb
 /home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/obj/Debug/net6.0/EveSharp.Test.genruntimeconfig.cache
-/home/vsohier/repos/csworkspace/EveSharp/EveSharp.Test/bin/Debug/net6.0/Xamarin.Essentials.dll

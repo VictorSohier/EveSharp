@@ -45,7 +45,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
-		public async Task GetCharacterContactsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility, params int[] contactIds)
+		public async Task RemoveCharacterContactsAsync(OAuth2Token token, int characterId, DataSources datasource = DataSources.tranquility, params int[] contactIds)
 		{
 			_client.DefaultRequestHeaders.Remove("Authorization");
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
@@ -71,7 +71,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 		{
 			_client.DefaultRequestHeaders.Remove("Authorization");
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
-			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}", JsonContent.Create(newContactIds));
+			HttpResponseMessage message = await _client.PostAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}", JsonContent.Create(newContactIds));
 			int[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
@@ -86,7 +86,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Remove("Authorization");
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			string payload = string.Join(",", newContacts.labelIds);
-			HttpResponseMessage message = await _client.PostAsync($"characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}$label_ids={payload}&watched={watched}", JsonContent.Create(newContacts.contactIds));
+			HttpResponseMessage message = await _client.PostAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}$label_ids={payload}&watched={watched}", JsonContent.Create(newContacts.contactIds));
 			int[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
@@ -96,18 +96,14 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
-		public async Task<int[]> BulkUpdateCharacterContacts(OAuth2Token token, int characterId, float standing, DataSources datasource = DataSources.tranquility, params int[] newContactIds)
+		public async Task BulkUpdateCharacterContacts(OAuth2Token token, int characterId, float standing, DataSources datasource = DataSources.tranquility, params int[] newContactIds)
 		{
 			_client.DefaultRequestHeaders.Remove("Authorization");
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
-			HttpResponseMessage message = await _client.PutAsync($"characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}", JsonContent.Create(newContactIds));
+			HttpResponseMessage message = await _client.PutAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}", JsonContent.Create(newContactIds));
 			int[] ret;
-			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
-			{
-				ret = _serializer.Deserialize<int[]>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync())));
-				return ret;
-			}
-			throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
+			if (!WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
+				throw new Exception(_serializer.Deserialize<Error>(new JsonTextReader(new StreamReader(await message.Content.ReadAsStreamAsync()))).error);
 		}
 		
 		public async Task<int[]> BulkUpdateCharacterContacts(OAuth2Token token, int characterId, float standing, SoAContactLabelAssociation newContacts, bool watched = false, DataSources datasource = DataSources.tranquility)
@@ -115,7 +111,7 @@ namespace EveSharp.Infrastructure.Models.Wrappers
 			_client.DefaultRequestHeaders.Remove("Authorization");
 			_client.DefaultRequestHeaders.Add("Authorization", $"{token.tokenType} {token.accessToken}");
 			string payload = string.Join(",", newContacts.labelIds);
-			HttpResponseMessage message = await _client.PutAsync($"characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}$label_ids={payload}&watched={watched}", JsonContent.Create(newContacts.contactIds));
+			HttpResponseMessage message = await _client.PutAsync($"/{WrapperConfig._instance.API_VERSION}/characters/{characterId}/contacts?datasource={Enum.GetName(datasource)?.ToLower()}&standing={standing}$label_ids={payload}&watched={watched}", JsonContent.Create(newContacts.contactIds));
 			int[] ret;
 			if (WrapperConfig._instance.SUCCESS.Contains(message.StatusCode))
 			{
