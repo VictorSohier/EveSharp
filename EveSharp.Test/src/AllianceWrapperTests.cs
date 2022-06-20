@@ -7,6 +7,7 @@ namespace EveSharp.Test
 	internal class AllianceWrapperTests
 	{
 		private readonly AllianceWrapper _wrapper = new();
+		private const int TEST_ALLIANCE_ID = 1354830081; // GSF
 		
 		internal AllianceWrapperTests() { }
 		
@@ -42,7 +43,7 @@ namespace EveSharp.Test
 		
 		private async Task<bool> AllianceDetailsTest()
 		{
-			Alliance alliance = await _wrapper.GetAllianceAsync(1354830081);
+			Alliance alliance = await _wrapper.GetAllianceAsync(TEST_ALLIANCE_ID);
 			bool ret = alliance.name == "Goonswarm Federation";
 			ret &= alliance.ticker == "CONDI";
 			return ret;
@@ -50,16 +51,19 @@ namespace EveSharp.Test
 		
 		private async Task<bool> AllianceCorporationsTest()
 		{
-			int[] allianceCorporationIds = await _wrapper.GetAllianceCorporationsAsync(1354830081);
+			int[] allianceCorporationIds = await _wrapper.GetAllianceCorporationsAsync(TEST_ALLIANCE_ID);
 			bool ret = allianceCorporationIds.Length > 0;
 			return ret;
 		}
 		
 		private async Task<bool> AllianceIconsTest()
 		{
-			Icon allianceIcons = await _wrapper.GetAllianceIconsAsync(1354830081);
-			bool ret = allianceIcons.px128x128 != null;
-			ret &= allianceIcons.px64x64 != null;
+			Icon allianceIcons = await _wrapper.GetAllianceIconsAsync(TEST_ALLIANCE_ID);
+			bool ret = 
+				!string.IsNullOrEmpty(allianceIcons.px64x64) |
+				!string.IsNullOrEmpty(allianceIcons.px128x128) |
+				!string.IsNullOrEmpty(allianceIcons.px256x256) |
+				!string.IsNullOrEmpty(allianceIcons.px512x512);
 			return ret;
 		}
 	}

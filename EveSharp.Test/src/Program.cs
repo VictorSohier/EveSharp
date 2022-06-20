@@ -40,6 +40,7 @@ namespace EveSharp.Test
 			CharacterWrapperTests characterWrapperTests = new(ref token, ref jwks);
 			ContactWrapperTests contactWrapperTests = new(ref token, ref jwks);
 			ContractWrapperTests contractWrapperTests = new(ref token, ref jwks);
+			CorporationWrapperTests corporationWrapperTests = new(ref token, ref jwks);
 			
 			await allianceWrapperTests.Run();
 			await assetWrapperTests.Run();
@@ -48,6 +49,7 @@ namespace EveSharp.Test
 			await characterWrapperTests.Run();
 			await contactWrapperTests.Run();
 			await contractWrapperTests.Run();
+			await corporationWrapperTests.Run();
 		}
 	}
 }

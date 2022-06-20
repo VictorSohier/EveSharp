@@ -159,10 +159,10 @@ namespace EveSharp.Test
 		{
 			Icon protrait = await _wrapper.GetPortraitAsync(_characterId);
 			bool ret =
-				protrait.px64x64 != null |
-				protrait.px128x128 != null |
-				protrait.px256x256 != null |
-				protrait.px512x512 != null;
+				!string.IsNullOrEmpty(protrait.px64x64) |
+				!string.IsNullOrEmpty(protrait.px128x128) |
+				!string.IsNullOrEmpty(protrait.px256x256) |
+				!string.IsNullOrEmpty(protrait.px512x512);
 			return ret;
 		}
 		

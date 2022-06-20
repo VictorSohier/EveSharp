@@ -56,7 +56,7 @@ namespace EveSharp.Test
 				publicContractItems = await PublicContractItems(publicContractId);
 				Console.WriteLine($"Public contract items: {publicContractItems}");
 			}
-			// need to get a corp to meaningfully test this
+			// TODO: need to get a corp to meaningfully test this
 			// (bool corporationContracts, int corporationContractId) = await CorporationContracts();
 			// Console.WriteLine($"Corporation contracts: {corporationContracts}");
 			// if (characterContracts)
